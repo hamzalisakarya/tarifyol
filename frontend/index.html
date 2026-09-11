@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title data-i18n="pageTitle">TarifYol – Strom, Gas, Internet &amp; Kfz</title>
     <meta name="description" content="TarifYol unterstützt Verbraucher in Deutschland bei Strom, Gas, Internet und Kfz – verständlich auf Deutsch und Türkisch.">
     <link rel="canonical" href="https://tarifyol.de/">
@@ -12,7 +12,6 @@
     <meta property="og:title" content="TarifYol – Strom, Gas, Internet &amp; Kfz">
     <meta property="og:description" content="TarifYol unterstützt Verbraucher in Deutschland bei Strom, Gas, Internet und Kfz – verständlich auf Deutsch und Türkisch.">
     <meta property="og:url" content="https://tarifyol.de/">
-
     <link rel="stylesheet" href="css/style.css">
     <script src="js/app.js" defer></script>
     <script src="js/journeys.js" defer></script>
@@ -23,155 +22,66 @@
     {"@context":"https://schema.org","@type":"WebSite","name":"TarifYol","url":"https://tarifyol.de/","inLanguage":["de","tr"]}
     </script>
 </head>
-<body>
+<body class="home-page">
     <a class="skip-link" href="#main-content" data-i18n="skipLink">Zum Inhalt springen</a>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="site-logo" href="./">
-                <span class="site-wordmark" aria-label="TarifYol">TarifYol</span>
-            </a>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">
-                <span class="sr-only" data-i18n="menuLabel">Menü öffnen</span>
-                <span></span><span></span><span></span>
-            </button>
+            <a class="site-logo" href="./" aria-label="TarifYol Startseite"><span class="site-wordmark">TarifYol</span></a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation"><span class="sr-only" data-i18n="menuLabel">Menü öffnen</span><span></span><span></span><span></span></button>
             <div class="header-panel" id="main-navigation">
                 <nav class="main-nav" aria-label="Hauptnavigation" data-i18n-aria-label="mainNavigation">
-                    <a href="#services" data-i18n="navServices">Leistungen</a>
-                    <a href="#process" data-i18n="navProcess">So funktioniert’s</a>
-                    <a href="#about" data-i18n="navAbout">Warum TarifYol</a>
-                    <a href="#transparency" data-i18n="navTransparency">Hinweise</a>
+                    <a href="#services" data-i18n="navServices">Bereiche</a>
+                    <a href="#process" data-i18n="navProcess">So funktioniert&apos;s</a>
+                    <a href="#about" data-i18n="navAbout">Ihre Daten</a>
                     <a href="ratgeber.html" data-i18n="navGuide">Ratgeber</a>
                     <a href="ueber-tarifyol.html" data-i18n="navAboutPage">Über TarifYol</a>
                 </nav>
-                <div class="language-switcher" aria-label="Sprachauswahl" data-i18n-aria-label="languageNavigation">
-                    <button type="button" data-language="de" aria-pressed="true">DE</button>
-                    <span aria-hidden="true">/</span>
-                    <button type="button" data-language="tr" aria-pressed="false">TR</button>
-                </div>
+                <div class="language-switcher" aria-label="Sprachauswahl" data-i18n-aria-label="languageNavigation"><button type="button" data-language="de" aria-pressed="true">DE</button><span aria-hidden="true">/</span><button type="button" data-language="tr" aria-pressed="false">TR</button></div>
                 <a class="button button-small button-primary" href="mailto:info@tarifyol.de" data-i18n="contactShort">Kontakt</a>
             </div>
         </div>
     </header>
 
     <main id="main-content">
-        <section class="hero" id="top">
-            <div class="container hero-grid">
-                <div class="hero-content">
+        <section class="home-hero" id="top">
+            <div class="container home-hero-inner">
+                <div class="home-hero-copy">
                     <p class="eyebrow" data-i18n="heroEyebrow">TarifYol · Deutsch &amp; Türkçe</p>
                     <h1 data-i18n="headline">Dein Weg durch Strom, Gas &amp; Internet.</h1>
-                    <p class="hero-lead" data-i18n="supportLanguages">Tarife besser verstehen, Möglichkeiten prüfen und beim Wechsel Unterstützung erhalten – auf Deutsch und Türkisch.</p>
-                    <p class="hero-copy" data-i18n="heroCopy">TarifYol unterstützt dich dabei, Tarife, Anbieterwechsel und die nächsten Schritte besser zu verstehen – persönlich, klar und ohne unnötige Komplexität.</p>
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="mailto:info@tarifyol.de" data-i18n="contactButton">Kontakt aufnehmen</a>
-                        <a class="text-link" href="#process" data-i18n="learnMore">So läuft es ab</a>
-                    </div>
-                    <p class="helper-text" data-i18n="contactNote">Unverbindlich per E-Mail Kontakt aufnehmen</p>
+                    <p class="home-lead" data-i18n="supportLanguages">Tarife einfach prüfen – persönlich, verständlich und auf Deutsch &amp; Türkçe.</p>
+                    <p class="home-copy" data-i18n="heroCopy">TarifYol begleitet dich klar und persönlich bei der ersten Tarifprüfung und den nächsten Schritten.</p>
+                    <div class="home-actions"><a class="button button-primary" href="#services" data-i18n="contactButton">Tarif prüfen</a><a class="text-link" href="#process" data-i18n="learnMore">So funktioniert&apos;s</a></div>
                 </div>
-                <div class="hero-card" aria-hidden="true">
-                    <div class="hero-card-top"><span>TarifYol</span><span class="status-dot"></span></div>
-                    <div class="hero-card-body">
-                        <div class="hero-service-grid">
-                            <div class="hero-service hero-service-strom"><span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"></path></svg></span><span>Strom</span></div>
-                            <div class="hero-service hero-service-gas"><span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4.4 0 7-2.8 7-6.4 0-3-1.8-5.4-4.8-8.2.1 2-1 3.3-2.3 4.2.2-3.9-1.8-6.8-4-9.1.2 3.1-3 5.2-3 8.8C4.9 18.9 7.5 22 12 22Z"></path></svg></span><span>Gas</span></div>
-                            <div class="hero-service hero-service-internet"><span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="m8 11 8-4M8 13l8 4"></path></svg></span><span>Internet</span></div>
-                            <div class="hero-service hero-service-kfz"><span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 16 1.5-5h11l1.5 5M4 16h16v3H4zM7 19v2m10-2v2M7 14h.01M17 14h.01"></path></svg></span><span>Kfz</span></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="home-hero-note" aria-label="TarifYol Themen"><span>Strom</span><span>Gas</span><span>Internet</span></div>
             </div>
         </section>
 
-        <section class="section" id="services">
+        <section class="home-section home-services" id="services">
             <div class="container">
-                <div class="section-heading">
-                    <p class="eyebrow" data-i18n="servicesEyebrow">Unsere Themen</p>
-                    <h2 data-i18n="servicesTitle">Unterstützung für wichtige Alltagsentscheidungen</h2>
-                    <p data-i18n="servicesIntro">Wir helfen dir, Informationen einzuordnen und den jeweiligen Prozess besser zu überblicken.</p>
-                </div>
-                <div class="card-grid">
-                    <article class="service-card service-card-linked service-card-strom"><a href="strom.html"><span class="card-number"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"></path></svg></span>01</span><h3 data-i18n="electricityTitle">Strom</h3><p data-i18n="electricityText">Unterstützung bei der Orientierung rund um Stromtarife und Anbieterwechsel.</p><span class="card-link-label" data-i18n="electricityCta">Stromtarif prüfen →</span></a></article>
-                    <article class="service-card service-card-linked service-card-gas"><a href="gas.html"><span class="card-number"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22c4.4 0 7-2.8 7-6.4 0-3-1.8-5.4-4.8-8.2.1 2-1 3.3-2.3 4.2.2-3.9-1.8-6.8-4-9.1.2 3.1-3 5.2-3 8.8C4.9 18.9 7.5 22 12 22Z"></path></svg></span>02</span><h3 data-i18n="gasTitle">Gas</h3><p data-i18n="gasText">Unterstützung bei Fragen zu Gastarifen und Wechselmöglichkeiten.</p><span class="card-link-label" data-de="Gastarif prüfen →" data-tr="Doğal gaz tarifeni kontrol et →">Gastarif prüfen →</span></a></article>
-                    <article class="service-card service-card-linked service-card-internet"><a href="internet.html"><span class="card-number"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="m8 11 8-4M8 13l8 4"></path></svg></span>03</span><h3 data-i18n="internetTitle">Internet</h3><p data-i18n="internetText">Unterstützung bei der Orientierung rund um DSL-, Kabel- und Glasfaserangebote.</p><span class="card-link-label" data-de="Internettarif prüfen →" data-tr="İnternet tarifeni kontrol et →">Internettarif prüfen →</span></a></article>
-                    <article class="service-card service-card-linked service-card-kfz"><a href="kfz.html"><span class="card-number"><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 16 1.5-5h11l1.5 5M4 16h16v3H4zM7 19v2m10-2v2M7 14h.01M17 14h.01"></path></svg></span>04</span><h3 data-i18n="carTitle">Kfz-Versicherung</h3><p data-i18n="carText">Externe Tarife selbst vergleichen und bei Bedarf technische Unterstützung von TarifYol erhalten.</p><p class="service-note" data-i18n="carNote">Keine Versicherungsberatung oder individuelle Produktempfehlung.</p><span class="card-link-label" data-i18n="carCta">Kfz-Vergleich starten →</span></a></article>
+                <div class="home-section-heading"><p class="eyebrow" data-i18n="servicesEyebrow">Unsere Bereiche</p><h2 data-i18n="servicesTitle">Strom, Gas und Internet auf einen Blick</h2><p data-i18n="servicesIntro">Wählen Sie Ihren Bereich. Wir prüfen die nächsten Möglichkeiten gemeinsam und verständlich.</p></div>
+                <div class="service-choice-grid">
+                    <a class="service-choice service-choice-strom" href="strom.html"><span class="service-index">01</span><h3 data-i18n="electricityTitle">Strom</h3><p data-i18n="electricityText">Stromtarife prüfen und den nächsten Schritt in Ruhe vorbereiten.</p><span class="choice-link" data-i18n="electricityCta">Stromtarif prüfen →</span></a>
+                    <a class="service-choice service-choice-gas" href="gas.html"><span class="service-index">02</span><h3 data-i18n="gasTitle">Gas</h3><p data-i18n="gasText">Gastarife prüfen und die eigenen Vertragsdaten besser einordnen.</p><span class="choice-link" data-de="Gastarif prüfen →" data-tr="Doğal gaz tarifesini kontrol et →">Gastarif prüfen →</span></a>
+                    <a class="service-choice service-choice-internet" href="internet.html"><span class="service-index">03</span><h3 data-i18n="internetTitle">Internet</h3><p data-i18n="internetText">DSL, Kabel und Glasfaser verständlich einordnen und Optionen prüfen.</p><span class="choice-link" data-de="Internettarif prüfen →" data-tr="İnternet tarifesini kontrol et →">Internettarif prüfen →</span></a>
                 </div>
             </div>
         </section>
 
-        <section class="section section-soft" id="process">
-            <div class="container">
-                <div class="section-heading">
-                    <p class="eyebrow" data-i18n="processEyebrow">Klar und unkompliziert</p>
-                    <h2 data-i18n="processTitle">So funktioniert’s</h2>
-                </div>
-                <ol class="steps">
-                    <li><span class="step-number">01</span><h3 data-i18n="stepOne">Kontakt aufnehmen</h3><p data-i18n="stepOneText">Schreib uns kurz, wobei du Unterstützung suchst.</p></li>
-                    <li><span class="step-number">02</span><h3 data-i18n="stepTwo">Bedarf mitteilen</h3><p data-i18n="stepTwoText">Wir klären gemeinsam deine Situation und deine Fragen.</p></li>
-                    <li><span class="step-number">03</span><h3 data-i18n="stepThree">Möglichkeiten prüfen</h3><p data-i18n="stepThreeText">Passende Möglichkeiten werden übersichtlich betrachtet.</p></li>
-                    <li><span class="step-number">04</span><h3 data-i18n="stepFour">Nächste Schritte klären</h3><p data-i18n="stepFourText">Du entscheidest, wie es anschließend weitergeht.</p></li>
-                </ol>
-            </div>
+        <section class="home-section home-trust" id="about">
+            <div class="container home-trust-inner"><div><p class="eyebrow" data-i18n="privacyEyebrow">Ihre Daten</p><h2 data-i18n="privacyHeading">Erst prüfen, dann Daten</h2></div><div><p data-i18n="privacyText">Für die erste Tarifprüfung benötigen wir keine IBAN und kein Geburtsdatum. Weitere Angaben werden erst benötigt, wenn Sie sich für einen Vertragsabschluss entscheiden und diese für den jeweiligen Vorgang erforderlich sind.</p><span class="language-note">Deutsch &amp; Türkçe</span></div></div>
         </section>
 
-        <section class="section" id="about">
-            <div class="container split-layout">
-                <div class="section-heading">
-                    <p class="eyebrow" data-i18n="benefitsEyebrow">Persönlich und verständlich</p>
-                    <h2 data-i18n="benefitsTitle">Warum TarifYol?</h2>
-                    <p data-i18n="benefitsIntro">Ein direkter Ansprechpartner für Menschen, die ihre Möglichkeiten ohne komplizierte Umwege verstehen möchten.</p>
-                </div>
-                <ul class="benefit-list">
-                    <li><span>DE / TR</span><strong data-i18n="benefitOne">Deutsch &amp; Türkisch</strong></li>
-                    <li><span>01:01</span><strong data-i18n="benefitTwo">Persönliche Unterstützung</strong></li>
-                    <li><span>✓</span><strong data-i18n="benefitThree">Einfache Kommunikation</strong></li>
-                    <li><span>4×</span><strong data-i18n="benefitFour">Strom, Gas, Internet und Kfz an einem Ort</strong></li>
-                </ul>
-            </div>
+        <section class="home-section home-process" id="process">
+            <div class="container"><div class="home-section-heading"><p class="eyebrow" data-i18n="processEyebrow">Klar und unkompliziert</p><h2 data-i18n="processTitle">So funktioniert&apos;s</h2></div><ol class="home-steps"><li><span>01</span><h3 data-i18n="stepOne">Angaben senden</h3><p data-i18n="stepOneText">Für die erste Prüfung senden Sie nur die grundlegenden Tarifangaben.</p></li><li><span>02</span><h3 data-i18n="stepTwo">Möglichkeiten prüfen</h3><p data-i18n="stepTwoText">Wir prüfen die nächsten Möglichkeiten auf Grundlage Ihrer Angaben.</p></li><li><span>03</span><h3 data-i18n="stepThree">In Ruhe entscheiden</h3><p data-i18n="stepThreeText">Sie erhalten eine verständliche Einordnung und entscheiden selbst, ob Sie weitermachen möchten.</p></li></ol></div>
         </section>
 
-        <section class="section section-soft" id="knowledge">
-            <div class="container">
-                <div class="section-heading"><p class="eyebrow" data-de="Wissen &amp; Orientierung" data-tr="Bilgi ve yönlendirme">Wissen &amp; Orientierung</p><h2 data-de="Tarife und Verträge besser verstehen" data-tr="Tarifeleri ve sözleşmeleri daha iyi anlayın">Tarife und Verträge besser verstehen</h2><p data-de="Unsere Ratgeber erklären wichtige Begriffe, Wechselprozesse und typische Fragen rund um Strom, Gas, Internet und Kfz." data-tr="Rehberlerimiz elektrik, doğal gaz, internet ve Kfz konularındaki önemli terimleri, değişiklik süreçlerini ve sık sorulan soruları açıklar.">Unsere Ratgeber erklären wichtige Begriffe, Wechselprozesse und typische Fragen rund um Strom, Gas, Internet und Kfz.</p></div>
-                <div class="guide-grid homepage-guide-grid">
-                    <article class="guide-card"><h3><a href="ratgeber/stromanbieter-wechseln.html" data-de="Stromanbieter wechseln" data-tr="Elektrik sağlayıcısını değiştirme">Stromanbieter wechseln</a></h3><p data-de="Vertrag und wichtige Angaben für den Wechsel vorbereiten." data-tr="Değişiklik için sözleşmeyi ve önemli bilgileri hazırlayın.">Vertrag und wichtige Angaben für den Wechsel vorbereiten.</p></article>
-                    <article class="guide-card"><h3><a href="ratgeber/arbeitspreis-grundpreis.html" data-de="Arbeitspreis und Grundpreis" data-tr="Çalışma bedeli ve temel ücret">Arbeitspreis und Grundpreis</a></h3><p data-de="Die beiden Preisbestandteile beim Stromtarif einordnen." data-tr="Elektrik tarifesindeki iki fiyat unsurunu anlayın.">Die beiden Preisbestandteile beim Stromtarif einordnen.</p></article>
-                    <article class="guide-card"><h3><a href="ratgeber/gasanbieter-wechseln.html" data-de="Gasanbieter wechseln" data-tr="Doğal gaz sağlayıcısını değiştirme">Gasanbieter wechseln</a></h3><p data-de="Welche Unterlagen und Angaben für die erste Orientierung helfen." data-tr="İlk değerlendirme için hangi bilgi ve belgeler yardımcı olur?">Welche Unterlagen und Angaben für die erste Orientierung helfen.</p></article>
-                    <article class="guide-card"><h3><a href="ratgeber/dsl-kabel-glasfaser.html" data-de="DSL, Kabel oder Glasfaser" data-tr="DSL, kablo veya fiber">DSL, Kabel oder Glasfaser</a></h3><p data-de="Technologien und Verfügbarkeit an der eigenen Adresse verstehen." data-tr="Teknolojileri ve kendi adresinizdeki uygunluğu anlayın.">Technologien und Verfügbarkeit an der eigenen Adresse verstehen.</p></article>
-                    <article class="guide-card"><h3><a href="ratgeber/internetgeschwindigkeit.html" data-de="Welche Internetgeschwindigkeit brauche ich?" data-tr="Hangi internet hızına ihtiyacım var?">Welche Internetgeschwindigkeit brauche ich?</a></h3><p data-de="Orientierung für Streaming, Homeoffice und mehrere Nutzer." data-tr="Yayın, evden çalışma ve birden fazla kullanıcı için yönlendirme.">Orientierung für Streaming, Homeoffice und mehrere Nutzer.</p></article>
-                    <article class="guide-card"><h3><a href="ratgeber/kfz-versicherung-wechseln.html" data-de="Kfz-Versicherung wechseln" data-tr="Kfz sigortasını değiştirme">Kfz-Versicherung wechseln</a></h3><p data-de="Den bestehenden Vertrag prüfen und den externen Vergleich vorbereiten." data-tr="Mevcut sözleşmeyi inceleyin ve harici karşılaştırmaya hazırlanın.">Den bestehenden Vertrag prüfen und den externen Vergleich vorbereiten.</p></article>
-                </div><p><a class="button button-primary" href="ratgeber.html" data-de="Alle Ratgeber ansehen" data-tr="Tüm rehberleri görüntüle">Alle Ratgeber ansehen</a></p>
-            </div>
-        </section>
+        <section class="home-section home-guides" id="knowledge"><div class="container"><div class="home-section-heading"><p class="eyebrow" data-de="Wissen &amp; Orientierung" data-tr="Bilgi ve yönlendirme">Wissen &amp; Orientierung</p><h2 data-de="Ratgeber für Ihre nächsten Fragen" data-tr="Sonraki sorularınız için rehberler">Ratgeber für Ihre nächsten Fragen</h2></div><div class="featured-guides"><a href="ratgeber/stromanbieter-wechseln.html"><span>Strom</span><h3 data-de="Stromanbieter wechseln" data-tr="Elektrik sağlayıcısını değiştirme">Stromanbieter wechseln</h3></a><a href="ratgeber/gasanbieter-wechseln.html"><span>Gas</span><h3 data-de="Gasanbieter wechseln" data-tr="Doğal gaz sağlayıcısını değiştirme">Gasanbieter wechseln</h3></a><a href="ratgeber/dsl-kabel-glasfaser.html"><span>Internet</span><h3 data-de="DSL, Kabel oder Glasfaser" data-tr="DSL, kablo veya fiber">DSL, Kabel oder Glasfaser</h3></a></div><a class="text-link" href="ratgeber.html" data-de="Alle Ratgeber ansehen →" data-tr="Tüm rehberleri görüntüle →">Alle Ratgeber ansehen →</a></div></section>
 
-        <section class="section transparency-section" id="transparency">
-            <div class="container transparency-box">
-                <div class="transparency-icon" aria-hidden="true">i</div>
-                <div>
-                    <p class="eyebrow" data-i18n="transparencyEyebrow">Transparent erklärt</p>
-                    <h2 data-i18n="transparencyTitle">Du behältst die Entscheidung</h2>
-                    <p data-i18n="transparencyText">TarifYol ist kein Energie- oder Internetanbieter. Ein Vertrag kommt – sofern du dich dafür entscheidest – direkt mit dem jeweiligen Anbieter oder Partner zustande. Für erfolgreiche Vermittlungen kann TarifYol eine Vergütung erhalten; für dich steht die freie Entscheidung im Mittelpunkt.</p>
-                </div>
-            </div>
-        </section>
+        <section class="home-section home-transparency" id="transparency"><div class="container home-transparency-inner"><div><p class="eyebrow" data-i18n="transparencyEyebrow">Transparent erklärt</p><h2 data-i18n="transparencyTitle">Du behältst die Entscheidung</h2></div><p data-i18n="transparencyText">TarifYol ist kein Energie- oder Internetanbieter. Ein Vertrag kommt direkt mit dem jeweiligen Anbieter oder Partner zustande. Für erfolgreiche Vermittlungen kann TarifYol eine Vergütung erhalten; die Entscheidung bleibt bei dir.</p></div></section>
 
-        <section class="section contact-section" id="contact">
-            <div class="container contact-box">
-                <div>
-                    <p class="eyebrow" data-i18n="ctaEyebrow">Einfach ins Gespräch kommen</p>
-                    <h2 data-i18n="ctaTitle">Du hast Fragen zu deinem Tarif oder einem Wechsel?</h2>
-                    <p data-i18n="ctaText">Schreib uns eine E-Mail. Wir schauen gemeinsam, welche nächsten Schritte für dich sinnvoll sind.</p>
-                    <a class="contact-email" href="mailto:info@tarifyol.de">info@tarifyol.de</a>
-                </div>
-                <a class="button button-light" href="mailto:info@tarifyol.de" data-i18n="emailButton">E-Mail senden</a>
-            </div>
-        </section>
+        <section class="home-contact" id="contact"><div class="container home-contact-inner"><div><p class="eyebrow" data-i18n="ctaEyebrow">Einfach ins Gespräch kommen</p><h2 data-i18n="ctaTitle">Fragen zu Ihrem Tarif?</h2><p data-i18n="ctaText">Schreiben Sie uns. Wir klären gemeinsam, welcher nächste Schritt sinnvoll ist.</p></div><a class="button button-light" href="mailto:info@tarifyol.de" data-i18n="emailButton">E-Mail senden</a></div></section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-main">
-            <div><a class="brand" href="#top">TarifYol<span>.</span></a><p data-i18n="footerClaim">Persönliche Unterstützung auf Deutsch und Türkisch.</p><a class="footer-email" href="mailto:info@tarifyol.de">info@tarifyol.de</a></div>
-            <nav aria-label="Rechtliche Hinweise" data-i18n-aria-label="legalNavigation"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="partnerhinweis.html">Partnerhinweis</a></nav>
-        </div>
-        <div class="container footer-bottom"><p>© <span data-current-year></span> TarifYol</p><p data-i18n="footerLocation">Für Kundinnen und Kunden in Deutschland</p></div>
-    </footer>
+    <footer class="site-footer"><div class="container footer-main"><div><a class="brand" href="#top">TarifYol<span>.</span></a><p data-i18n="footerClaim">Persönliche Unterstützung auf Deutsch und Türkisch.</p><a class="footer-email" href="mailto:info@tarifyol.de">info@tarifyol.de</a></div><nav aria-label="Rechtliche Hinweise" data-i18n-aria-label="legalNavigation"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="partnerhinweis.html">Partnerhinweis</a></nav></div><div class="container footer-bottom"><p>© <span data-current-year></span> TarifYol</p><p data-i18n="footerLocation">Für Kundinnen und Kunden in Deutschland</p></div></footer>
 </body>
 </html>
