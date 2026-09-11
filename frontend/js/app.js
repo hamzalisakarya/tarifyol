@@ -224,6 +224,11 @@ function setLanguage(language) {
         if (value) element.setAttribute("aria-label", value);
     });
 
+    document.querySelectorAll("[data-de][data-tr]").forEach((element) => {
+        const value = currentLanguage === "tr" ? element.dataset.tr : element.dataset.de;
+        if (value) element.textContent = value;
+    });
+
     document.querySelectorAll("[data-language]").forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.language === currentLanguage));
     });
