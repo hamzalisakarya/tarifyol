@@ -33,6 +33,12 @@ const translations = {
         gasText: "Unterstützung bei Fragen zu Gastarifen und Wechselmöglichkeiten.",
         internetTitle: "Internet",
         internetText: "Unterstützung rund um DSL-, Kabel- und Glasfaserangebote.",
+        kfzHomeEyebrow: "ZUSÄTZLICH",
+        kfzHomeTitle: "Kfz-Versicherung selbst vergleichen",
+        kfzHomeSupport: "Viele Tarife einfach vergleichen",
+        kfzHomeText: "Du möchtest deine Kfz-Versicherung selbst vergleichen? Über unseren externen Vergleichspartner kannst du Tarife direkt online prüfen und vergleichen.",
+        kfzHomeCta: "Vergleich selbst starten →",
+        kfzHomeDisclosure: "Der Vergleich und ein möglicher Vertragsabschluss erfolgen direkt beim externen Vergleichspartner.",
         carTitle: "Kfz-Versicherung",
         carText: "Externe Tarife selbst vergleichen und bei Bedarf technische Unterstützung von TarifYol erhalten.",
         carNote: "Keine Versicherungsberatung oder individuelle Produktempfehlung.",
@@ -64,12 +70,14 @@ const translations = {
         footerLocation: "Für Kundinnen und Kunden in Deutschland",
         electricityPageTitle: "Stromtarif prüfen – TarifYol", nextStepsNav: "So geht es weiter", privacyNav: "Datenschutz",
         electricityEyebrow: "Strom", electricityHeading: "Stromtarif prüfen",
-        electricityIntro: "Für eine erste Tarifprüfung benötigen wir Ihre Postleitzahl, Ihren Jahresverbrauch und Ihre E-Mail-Adresse.",
+        electricityIntro: "Für eine erste Anfrage genügen Ihr Name und Ihre Postleitzahl. Weitere Angaben können Sie ergänzen, wenn sie bekannt sind.",
         electricityEstimatorIntro: "Sie kennen Ihren Jahresverbrauch nicht? Kein Problem – mit unserem Verbrauchsrechner können Sie einen ungefähren Wert ermitteln.",
         initialTrustNote: "Für die erste Tarifprüfung benötigen wir keine IBAN und kein Geburtsdatum.",
-        initialDetailsTitle: "Ihre Angaben", postalCodeLabel: "Postleitzahl", postalCodeError: "Bitte geben Sie eine gültige deutsche Postleitzahl mit 5 Ziffern ein.",
-        consumptionLabel: "Jahresverbrauch", consumptionUnit: "kWh/Jahr", consumptionError: "Bitte geben Sie einen plausiblen Jahresverbrauch ein.", estimatedBadge: "geschätzt",
-        estimateToggle: "Verbrauch nicht bekannt? Jetzt schätzen", requestTariff: "Tarifprüfung anfragen",
+        initialDetailsTitle: "Ihre Angaben", nameLabel: "Name", nameError: "Bitte gib deinen Namen ein.", postalCodeLabel: "PLZ", postalCodeError: "Bitte gib eine gültige 5-stellige PLZ ein.",
+        consumptionLabel: "Jahresverbrauch (optional)", consumptionUnit: "kWh/Jahr", consumptionHelp: "Falls bekannt, findest du den Verbrauch auf deiner letzten Jahresabrechnung.", consumptionError: "Bitte gib deinen Jahresverbrauch in kWh ein.", estimatedBadge: "geschätzt",
+        estimateToggle: "Verbrauch nicht bekannt? Jetzt schätzen", requestTariff: "Anfrage per WhatsApp senden",
+        whatsappNote: "Nach dem Klick öffnet sich WhatsApp mit deiner vorbereiteten Anfrage. Dort kannst du die Angaben prüfen und die Nachricht senden.",
+        lowConsumptionWarning: "Der angegebene Jahresverbrauch ist ungewöhnlich niedrig. Bitte prüfe den Wert auf deiner letzten Jahresabrechnung.",
         estimatorEyebrow: "Verbrauchsrechner", estimatorTitle: "Jahresverbrauch ungefähr schätzen", estimatorLead: "Beantworten Sie einige kurze Fragen. Das Ergebnis dient als Orientierung für die Tarifprüfung.",
         householdQuestion: "Wie viele Personen leben im Haushalt?", buildingQuestion: "Wie wohnen Sie?", apartmentOption: "Wohnung / Mehrfamilienhaus", houseOption: "Einfamilienhaus / Reihenhaus",
         householdFeatures: "Was trifft auf Ihren Haushalt zu?",
@@ -120,6 +128,12 @@ const translations = {
         gasText: "Doğal gaz tarifeleri ve değişim seçenekleri hakkında destek.",
         internetTitle: "İnternet",
         internetText: "DSL, kablo ve fiber seçenekleri hakkında destek.",
+        kfzHomeEyebrow: "EK OLARAK",
+        kfzHomeTitle: "Kfz sigortasını kendiniz karşılaştırın",
+        kfzHomeSupport: "Birçok tarifeyi kolayca karşılaştırın",
+        kfzHomeText: "Kfz sigortanı kendin karşılaştırmak ister misin? Harici karşılaştırma ortağımız üzerinden tarifeleri doğrudan online olarak inceleyip karşılaştırabilirsin.",
+        kfzHomeCta: "Karşılaştırmayı başlat →",
+        kfzHomeDisclosure: "Karşılaştırma ve olası sözleşme işlemi doğrudan harici karşılaştırma ortağının sitesinde gerçekleşir.",
         carTitle: "Araç Sigortası",
         carText: "Harici sitedeki tarifeleri kendiniz karşılaştırın ve ihtiyaç duyarsanız TarifYol’den teknik destek alın.",
         carNote: "Sigorta danışmanlığı veya kişiye özel ürün tavsiyesi verilmez.",
@@ -151,12 +165,14 @@ const translations = {
         footerLocation: "Almanya’daki müşteriler için",
         electricityPageTitle: "Elektrik tarifeni kontrol et – TarifYol", nextStepsNav: "Sonraki adımlar", privacyNav: "Gizlilik",
         electricityEyebrow: "Elektrik", electricityHeading: "Elektrik tarifeni kontrol et",
-        electricityIntro: "İlk tarife kontrolü için posta kodunuz, yıllık elektrik tüketiminiz ve e-posta adresiniz yeterlidir.",
+        electricityIntro: "İlk talep için adınız ve posta kodunuz yeterlidir. Diğer bilgileri biliyorsanız ekleyebilirsiniz.",
         electricityEstimatorIntro: "Yıllık tüketiminizi bilmiyor musunuz? Sorun değil – tüketim hesaplayıcımızla yaklaşık bir değer bulabilirsiniz.",
         initialTrustNote: "İlk tarife kontrolü için IBAN veya doğum tarihi gerekmiyor.",
-        initialDetailsTitle: "Bilgileriniz", postalCodeLabel: "Posta kodu", postalCodeError: "Lütfen 5 rakamlı geçerli bir Alman posta kodu girin.",
-        consumptionLabel: "Yıllık tüketim", consumptionUnit: "kWh/yıl", consumptionError: "Lütfen geçerli bir yıllık tüketim değeri girin.", estimatedBadge: "tahmini",
-        estimateToggle: "Tüketimini bilmiyor musun? Şimdi tahmin et", requestTariff: "Tarife kontrolü iste",
+        initialDetailsTitle: "Bilgileriniz", nameLabel: "Ad Soyad", nameError: "Lütfen adını ve soyadını gir.", postalCodeLabel: "Posta kodu", postalCodeError: "Lütfen 5 haneli geçerli bir posta kodu gir.",
+        consumptionLabel: "Yıllık tüketim (isteğe bağlı)", consumptionUnit: "kWh/yıl", consumptionHelp: "Biliyorsanız bu bilgiyi son yıllık faturanızda bulabilirsiniz.", consumptionError: "Lütfen yıllık tüketimini kWh cinsinden gir.", estimatedBadge: "tahmini",
+        estimateToggle: "Tüketimini bilmiyor musun? Şimdi tahmin et", requestTariff: "WhatsApp ile talep gönder",
+        whatsappNote: "Tıkladıktan sonra WhatsApp hazırlanmış talebinizle açılır. Bilgilerinizi kontrol edip mesajı gönderebilirsiniz.",
+        lowConsumptionWarning: "Belirtilen yıllık tüketim alışılmadık derecede düşük. Lütfen değeri son elektrik faturandan kontrol et.",
         estimatorEyebrow: "Tüketim hesaplayıcı", estimatorTitle: "Yıllık tüketimini yaklaşık hesapla", estimatorLead: "Birkaç kısa soruyu yanıtlayın. Sonuç, tarife kontrolü için yaklaşık bir değerdir.",
         householdQuestion: "Evde kaç kişi yaşıyor?", buildingQuestion: "Nasıl bir evde yaşıyorsunuz?", apartmentOption: "Apartman dairesi", houseOption: "Müstakil / sıra ev",
         householdFeatures: "Evinizde hangileri var?",
@@ -178,7 +194,10 @@ const translations = {
 const storageKey = "tarifyol-language";
 const legacyStorageKey = "feelyng-language";
 
-// TODO: WhatsApp Business Nummer eintragen und WhatsApp CTA wieder aktivieren.
+// Enter the official TarifYol WhatsApp number here in international format, without +, spaces or punctuation.
+const TARIFYOL_WHATSAPP_NUMBER = "";
+window.TARIFYOL_WHATSAPP_NUMBER = TARIFYOL_WHATSAPP_NUMBER;
+const hasConfiguredWhatsApp = /^[1-9][0-9]{7,14}$/.test(TARIFYOL_WHATSAPP_NUMBER);
 
 const electricityEstimatorConfig = {
     apartmentBase: { 1: 1200, 2: 1900, 3: 2400, 4: 2600, 5: 3100, 6: 3500 },
@@ -277,6 +296,7 @@ const estimatorSection = document.querySelector("#estimator");
 const estimatorForm = document.querySelector("#estimator-form");
 const consumptionInput = document.querySelector("#annual-consumption");
 const estimatedBadge = document.querySelector("#consumption-status");
+document.querySelectorAll("[data-whatsapp-request]").forEach((button) => { button.disabled = !hasConfiguredWhatsApp; });
 
 function roundConsumption(value) {
     return Math.round(value / electricityEstimatorConfig.roundingStep) * electricityEstimatorConfig.roundingStep;
@@ -374,33 +394,40 @@ function setFieldValidity(input, errorElement, isValid) {
 
 tariffForm?.addEventListener("submit", (event) => {
     event.preventDefault();
+    const customerName = document.querySelector("#customer-name");
     const postalCode = document.querySelector("#postal-code");
     const postalError = document.querySelector("#postal-code-error");
     const consumptionError = document.querySelector("#consumption-error");
-    const customerEmail = document.querySelector("#customer-email");
-    const postalValid = /^[0-9]{5}$/.test(postalCode.value);
-    const consumption = Number(consumptionInput.value);
-    const consumptionValid = Number.isFinite(consumption) && consumption >= 100 && consumption <= 100000;
+    const nameValid = customerName.value.trim() !== "";
+    const postalValid = /^[0-9]{5}$/.test(postalCode.value.trim());
+    const consumptionValue = consumptionInput.value.trim();
+    const consumption = Number(consumptionValue.replace(",", "."));
+    const consumptionValid = consumptionValue === "" || (/^\d+(?:[.,]\d+)?$/.test(consumptionValue) && Number.isFinite(consumption) && consumption > 0 && consumption <= 100000);
 
+    setFieldValidity(customerName, document.querySelector("#customer-name-error"), nameValid);
     setFieldValidity(postalCode, postalError, postalValid);
     setFieldValidity(consumptionInput, consumptionError, consumptionValid);
-    if (!postalValid || !consumptionValid || !customerEmail?.checkValidity()) {
-        customerEmail?.reportValidity();
+    const consumptionWarning = document.querySelector("#consumption-warning");
+    if (consumptionWarning) consumptionWarning.hidden = !(consumptionValue !== "" && consumption > 0 && consumption < 500);
+    if (!nameValid || !postalValid || !consumptionValid) {
+        const firstInvalid = [customerName, postalCode, consumptionInput].find((input) => input.getAttribute("aria-invalid") === "true");
+        firstInvalid?.focus({ preventScroll: true });
         return;
     }
 
-    if (!tariffForm.reportValidity()) return;
-
     const formattedConsumption = formatConsumption(consumption);
     const currentPayment = document.querySelector("#current-payment")?.value;
-    const subject = currentLanguage === "tr"
-        ? "Elektrik tarifesi kontrol talebi"
-        : "Anfrage zur Stromtarifprüfung";
-    const body = currentLanguage === "tr"
-        ? `Merhaba TarifYol,\n\nelektrik tarifemi kontrol ettirmek istiyorum.\n\nE-posta: ${customerEmail.value}\nPosta kodu: ${postalCode.value}\nYıllık tüketim: ${consumptionIsEstimated ? "yaklaşık " : ""}${formattedConsumption} kWh\nTüketim değeri: ${consumptionIsEstimated ? "tahmini" : "kullanıcı tarafından girildi"}${currentPayment ? `\nGüncel aylık ödeme: ${currentPayment} EUR/ay` : ""}\n\nBenimle iletişime geçebilir misiniz?`
-        : `Hallo TarifYol,\n\nich möchte meinen Stromtarif prüfen lassen.\n\nE-Mail: ${customerEmail.value}\nPLZ: ${postalCode.value}\nJahresverbrauch: ${consumptionIsEstimated ? "ca. " : ""}${formattedConsumption} kWh\nVerbrauchswert: ${consumptionIsEstimated ? "geschätzt" : "vom Kunden angegeben"}${currentPayment ? `\nAktueller Abschlag: ${currentPayment} EUR/Monat` : ""}\n\nBitte melden Sie sich bei mir.`;
-
-    window.location.href = `mailto:info@tarifyol.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const name = customerName.value.trim();
+    const lines = currentLanguage === "tr"
+        ? ["Merhaba TarifYol,", "", "elektrik tarifemin kontrol edilmesini istiyorum.", "", "MÜŞTERİ BİLGİLERİ", `Ad Soyad: ${name}`, `Posta Kodu: ${postalCode.value.trim()}`]
+        : ["Hallo TarifYol,", "", "ich möchte meinen Stromtarif prüfen lassen.", "", "KUNDENDATEN", `Name: ${name}`, `PLZ: ${postalCode.value.trim()}`];
+    const tariffLines = currentLanguage === "tr" ? ["TARİFE BİLGİLERİ", "Alan: Elektrik"] : ["TARIFDATEN", "Bereich: Strom"];
+    if (consumptionValue !== "") tariffLines.push(currentLanguage === "tr" ? `Yıllık Tüketim: ${consumptionIsEstimated ? "yaklaşık " : ""}${formattedConsumption} kWh` : `Jahresverbrauch: ${consumptionIsEstimated ? "ca. " : ""}${formattedConsumption} kWh`);
+    if (currentPayment) tariffLines.push(currentLanguage === "tr" ? `Güncel Aylık Ödeme: ${currentPayment} EUR/ay` : `Aktueller Abschlag: ${currentPayment} EUR/Monat`);
+    if (tariffLines.length > 2) lines.push("", ...tariffLines);
+    lines.push("", currentLanguage === "tr" ? "Teşekkür ederim." : "Vielen Dank.");
+    const body = lines.join("\n");
+    window.openTarifYolWhatsAppMessage?.(body);
 });
 
 let savedLanguage = "de";
