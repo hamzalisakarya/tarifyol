@@ -179,6 +179,7 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .input-unit span { position: absolute; top: 50%; right: 0.9rem; color: var(--color-muted); font-size: 0.85rem; transform: translateY(-50%); }
 .field-error, .form-error { display: none; margin: 0.4rem 0 0; color: #8c2f27; font-size: 0.84rem; font-weight: 650; }
 .field-error.is-visible, .form-error.is-visible { display: block; }
+.field-warning { margin: 0.4rem 0 0; color: #74560d; font-size: 0.84rem; font-weight: 650; }
 .estimated-badge { display: inline-block; margin: 0.5rem 0 0; padding: 0.18rem 0.55rem; color: var(--color-primary-dark); background: var(--color-accent); border-radius: 999px; font-size: 0.75rem; font-weight: 800; }
 .estimator-toggle { margin-top: 1rem; padding: 0; color: var(--color-primary-dark); background: none; border: 0; font-weight: 750; text-decoration: underline; text-underline-offset: 0.25em; cursor: pointer; }
 .form-submit { width: 100%; margin-top: 1.7rem; }
@@ -220,7 +221,19 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .compact-fieldset { margin: 1.2rem 0 0; padding: 0; border: 0; }
 .compact-fieldset legend { margin-bottom: 0.55rem; padding: 0; font-weight: 750; }
 .compact-fieldset .field { margin-top: 0.85rem; }
+.provider-program { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem; margin-top: 2rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.72); border: 1px solid var(--color-border); border-radius: var(--radius-medium); }
+.provider-program-copy h2 { margin: 0; font-size: 1.15rem; }
+.provider-program-copy p:last-child { max-width: 34rem; margin: 0.4rem 0 0; color: var(--color-muted); font-size: 0.88rem; }
+.provider-program-copy .eyebrow { margin-bottom: 0.35rem; }
+.provider-program-list { display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); align-items: center; gap: 0.75rem; padding: 0.65rem 0.75rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); }
+.provider-creative { display: block; line-height: 0; }
+.provider-creative { width: 120px; max-width: 100%; justify-self: center; }
+.provider-creative img { display: block; width: 120px; height: 60px; max-width: 100%; object-fit: contain; }
+.provider-program-journey { margin-top: 1.75rem; }
+.provider-program-journey .provider-program-list { grid-template-columns: 120px; }
 .speed-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.internet-form .compact-fieldset .choice-grid label > span { min-height: 2.7rem; padding: 0.5rem 0.65rem; line-height: 1.2; }
+.internet-form .speed-grid label:last-child { grid-column: span 2; }
 .conditional-field { padding: 0.9rem; background: var(--color-soft); border-radius: var(--radius-small); }
 .cost-orientation { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1rem; padding: 1rem; background: var(--color-soft); border-radius: var(--radius-small); }
 .cost-orientation div { display: flex; flex-direction: column; }
@@ -533,8 +546,15 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .home-page .service-choice h3 { grid-column: 2; grid-row: 1; margin: 0.15rem 0 0.25rem; font-size: 1.25rem; }
 .home-page .service-choice p { grid-column: 2; grid-row: 2; margin: 0; line-height: 1.45; }
 .home-page .choice-link { grid-column: 2; grid-row: 3; margin-top: 0; padding-top: 0.75rem; font-size: 0.92rem; }
-.home-page .home-kfz-teaser { margin: 0.85rem 0 0; color: var(--color-muted); font-size: 0.88rem; text-align: right; }
-.home-page .home-kfz-teaser a { color: var(--color-primary-dark); font-weight: 750; text-underline-offset: 0.2em; }
+.home-page .home-kfz-section { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: center; gap: clamp(2.5rem, 4vw, 4.5rem); margin-top: 2.5rem; padding: clamp(1.75rem, 4vw, 2.75rem); background: #f4f8f5; border: 1px solid var(--color-border); border-radius: var(--radius-medium); }
+.home-page .home-kfz-copy { min-width: 0; }
+.home-page .home-kfz-copy h2 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.55rem); line-height: 1.05; letter-spacing: -0.055em; }
+.home-page .home-kfz-support { margin: 0.55rem 0 0; color: var(--color-primary); font-size: 0.9rem; font-weight: 750; }
+.home-page .home-kfz-copy > p:not(.eyebrow):not(.home-kfz-support) { max-width: 37rem; margin: 1rem 0 0; color: var(--color-muted); }
+.home-page .home-kfz-copy .button { margin-top: 1.5rem; }
+.home-page .home-kfz-disclosure { max-width: 34rem; margin: 1rem 0 0; color: var(--color-muted); font-size: 0.78rem; line-height: 1.45; }
+.home-page .home-kfz-banner { width: 300px; max-width: 100%; margin: 0; justify-self: end; }
+.home-page .home-kfz-banner a, .home-page .home-kfz-banner img { display: block; width: 300px; max-width: 100%; }
 .home-page .home-process { padding-block: 1.5rem 3.8rem; }
 .home-page .home-process .home-section-heading { margin-bottom: 1.7rem; }
 .home-page .home-process .home-section-heading h2 { font-size: clamp(2.2rem, 3.4vw, 3.15rem); }
@@ -578,15 +598,24 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
     .home-page .home-hero-mobile-image img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; object-position: 62% center; }
     .home-page .home-services { padding-top: 1.5rem; }
     .home-page .service-choice-grid, .home-page .home-steps { grid-template-columns: 1fr; }
-    .home-page .home-kfz-teaser { text-align: left; }
+    .home-page .home-kfz-section { align-items: stretch; }
     .home-page .home-process { padding-block: 3rem; }
     .home-page .home-steps { gap: 1.25rem; }
     .home-page .home-steps li { padding-left: 3.8rem; }
     .home-page .home-steps li:not(:last-child)::after { display: none; }
 }
+@media (max-width: 767px) {
+    .home-page .home-kfz-section { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; margin-top: 2rem; padding: 1.5rem; }
+    .home-page .home-kfz-copy h2 { max-width: none; }
+    .home-page .home-kfz-banner { justify-self: center; }
+}
 @media (max-width: 30rem) {
     .home-page .home-actions { flex-direction: column; }
     .home-page .home-actions .button { width: 100%; }
+    .provider-program { grid-template-columns: 1fr; gap: 1rem; }
+    .provider-program-list { grid-template-columns: repeat(2, minmax(120px, 1fr)); justify-items: center; }
+    .internet-form .speed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .internet-form .speed-grid label:last-child { grid-column: 1 / -1; }
 .home-page .home-hero-mobile-image img { aspect-ratio: 1.65 / 1; }
 }
 /* End approved homepage reference styles. */

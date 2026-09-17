@@ -8,7 +8,6 @@ const gasEstimatorConfig = {
 
 let gasEstimate = null;
 let gasConsumptionEstimated = false;
-let internetData = null;
 
 function journeyLanguage() {
     return document.documentElement.lang === "tr" ? "tr" : "de";
@@ -20,7 +19,6 @@ function updateJourneyCopy(language = journeyLanguage()) {
     });
     updateKfzSupportLink();
     if (gasEstimate) renderGasEstimate();
-    if (internetData && !document.querySelector("[data-summary-section]")?.hidden) renderInternetSummary(internetData);
     renderGasCost();
 }
 
@@ -40,6 +38,38 @@ function roundGas(value) {
 function buildMailto(subject, body) {
     return `mailto:info@tarifyol.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
+
+function showJourneyError(input, id, de, tr, valid) {
+    let error = document.getElementById(id);
+    if (!error) { error = document.createElement("p"); error.id = id; error.className = "field-error"; input.closest(".field")?.append(error); }
+    error.textContent = journeyLanguage() === "tr" ? tr : de;
+    error.classList.toggle("is-visible", !valid);
+    input.setAttribute("aria-invalid", String(!valid));
+    input.setCustomValidity(valid ? "" : error.textContent);
+    return valid;
+}
+
+function openTarifYolWhatsApp(message) {
+    const number = String(window.TARIFYOL_WHATSAPP_NUMBER || "").replace(/[^0-9]/g, "");
+    if (!/^[1-9][0-9]{7,14}$/.test(number)) return false;
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    return true;
+}
+
+window.openTarifYolWhatsAppMessage = openTarifYolWhatsApp;
+
+function addGasProviderProgram() {
+    const target = document.querySelector(".strom-hero-grid > div:first-child");
+    if (!document.querySelector("#gas-form") || !target || document.querySelector("#gas-provider-program")) return;
+    const section = document.createElement("section");
+    section.id = "gas-provider-program";
+    section.className = "provider-program provider-program-journey";
+    section.setAttribute("aria-labelledby", "gas-provider-heading");
+    section.innerHTML = '<div class="provider-program-copy"><p class="eyebrow">Anbieter &amp; Partnerprogramme</p><h2 id="gas-provider-heading">Anbieter &amp; Partnerprogramme</h2><p>TarifYol arbeitet mit ausgewählten Anbietern und Partnerprogrammen zusammen.</p></div><div class="provider-program-list"><a class="provider-creative" rel="sponsored" href="https://www.awin1.com/cread.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193"><img src="https://www.awin1.com/cshow.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193" border="0" alt="LichtBlick"></a></div>';
+    target.append(section);
+}
+
+addGasProviderProgram();
 
 const gasForm = document.querySelector("#gas-form");
 const gasEstimator = document.querySelector("#gas-estimator");
@@ -133,22 +163,30 @@ function renderGasCost() {
 
 gasForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (!gasForm.reportValidity()) return;
-    const data = new FormData(gasForm);
-    if (!/^[0-9]{5}$/.test(data.get("postalCode"))) {
-        document.querySelector("#gas-postal").setCustomValidity(journeyLanguage() === "tr" ? "5 rakamlı geçerli bir posta kodu girin." : "Bitte geben Sie eine gültige 5-stellige Postleitzahl ein.");
-        gasForm.reportValidity();
+    const nameInput = document.querySelector("#gas-name");
+    const postalInput = document.querySelector("#gas-postal");
+    const consumptionInput = document.querySelector("#gas-consumption");
+    const nameValid = showJourneyError(nameInput, "gas-name-error", "Bitte gib deinen Namen ein.", "Lütfen adını ve soyadını gir.", nameInput.value.trim() !== "");
+    const postalValid = showJourneyError(postalInput, "gas-postal-error", "Bitte gib eine gültige 5-stellige PLZ ein.", "Lütfen 5 haneli geçerli bir posta kodu gir.", /^[0-9]{5}$/.test(postalInput.value.trim()));
+    const consumptionValue = consumptionInput.value.trim();
+    const consumption = Number(consumptionValue.replace(",", "."));
+    const consumptionValid = consumptionValue === "" || (/^\d+(?:[.,]\d+)?$/.test(consumptionValue) && Number.isFinite(consumption) && consumption > 0 && consumption <= 200000);
+    const consumptionOk = showJourneyError(consumptionInput, "gas-consumption-error", "Bitte gib deinen Jahresverbrauch in kWh ein.", "Lütfen yıllık tüketimini kWh cinsinden gir.", consumptionValid);
+    const warning = document.querySelector("#gas-consumption-warning");
+    if (warning) warning.hidden = !(consumptionValue !== "" && consumption > 0 && (consumption < 500 || consumption > 100000));
+    if (!nameValid || !postalValid || !consumptionOk) {
+        [nameInput, postalInput, consumptionInput].find((input) => input.getAttribute("aria-invalid") === "true")?.focus();
         return;
     }
-    document.querySelector("#gas-postal").setCustomValidity("");
-    const paymentLine = data.get("payment")
-        ? (journeyLanguage() === "tr" ? `\nGüncel aylık ödeme: ${data.get("payment")} EUR/ay` : `\nAktueller Abschlag: ${data.get("payment")} EUR/Monat`)
-        : "";
-    const subject = journeyLanguage() === "tr" ? "Doğal gaz tarifesi kontrol talebi" : "Anfrage zur Gastarifprüfung";
-    const body = journeyLanguage() === "tr"
-        ? `Merhaba TarifYol,\n\ndoğal gaz tarifemi kontrol ettirmek istiyorum.\n\nE-posta: ${data.get("email")}\nPosta kodu: ${data.get("postalCode")}\nYıllık tüketim: ${gasConsumptionEstimated ? "yaklaşık " : ""}${localizedNumber(Number(data.get("consumption")))} kWh\nTüketim değeri: ${gasConsumptionEstimated ? "tahmini" : "kullanıcı tarafından girildi"}${paymentLine}\n\nBenimle iletişime geçebilir misiniz?`
-        : `Hallo TarifYol,\n\nich möchte meinen Gastarif prüfen lassen.\n\nE-Mail: ${data.get("email")}\nPLZ: ${data.get("postalCode")}\nJahresverbrauch: ${gasConsumptionEstimated ? "ca. " : ""}${localizedNumber(Number(data.get("consumption")))} kWh\nVerbrauchswert: ${gasConsumptionEstimated ? "geschätzt" : "vom Kunden angegeben"}${paymentLine}\n\nBitte melden Sie sich bei mir.`;
-    window.location.href = buildMailto(subject, body);
+    const data = new FormData(gasForm);
+    const tr = journeyLanguage() === "tr";
+    const lines = tr ? ["Merhaba TarifYol,", "", "doğal gaz tarifemin kontrol edilmesini istiyorum.", "", "MÜŞTERİ BİLGİLERİ", `Ad Soyad: ${nameInput.value.trim()}`, `Posta Kodu: ${data.get("postalCode")}`] : ["Hallo TarifYol,", "", "ich möchte meinen Gastarif prüfen lassen.", "", "KUNDENDATEN", `Name: ${nameInput.value.trim()}`, `PLZ: ${data.get("postalCode")}`];
+    const tariffLines = tr ? ["TARİFE BİLGİLERİ", "Alan: Doğal gaz"] : ["TARIFDATEN", "Bereich: Gas"];
+    if (consumptionValue) tariffLines.push(tr ? `Yıllık Tüketim: ${gasConsumptionEstimated ? "yaklaşık " : ""}${localizedNumber(consumption)} kWh` : `Jahresverbrauch: ${gasConsumptionEstimated ? "ca. " : ""}${localizedNumber(consumption)} kWh`);
+    if (data.get("payment")) tariffLines.push(tr ? `Güncel Aylık Ödeme: ${data.get("payment")} EUR/ay` : `Aktueller Abschlag: ${data.get("payment")} EUR/Monat`);
+    if (tariffLines.length > 2) lines.push("", ...tariffLines);
+    lines.push("", tr ? "Teşekkür ederim." : "Vielen Dank.");
+    window.openTarifYolWhatsAppMessage?.(lines.join("\n"));
 });
 
 const internetForm = document.querySelector("#internet-form");
@@ -176,65 +214,34 @@ function internetLabel(value, type) {
     return labels[value] || value || "–";
 }
 
-function renderInternetSummary(data) {
+internetForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = document.querySelector("#internet-name");
+    const postal = document.querySelector("#internet-postal");
+    const nameValid = showJourneyError(name, "internet-name-error", "Bitte gib deinen Namen ein.", "Lütfen adını ve soyadını gir.", name.value.trim() !== "");
+    const postalValid = showJourneyError(postal, "internet-postal-error", "Bitte gib eine gültige 5-stellige PLZ ein.", "Lütfen 5 haneli geçerli bir posta kodu gir.", /^[0-9]{5}$/.test(postal.value.trim()));
+    const payment = document.querySelector("#internet-payment");
+    const paymentValue = payment.value.trim();
+    const paymentValid = paymentValue === "" || (Number.isFinite(Number(paymentValue)) && Number(paymentValue) >= 0);
+    const paymentOk = showJourneyError(payment, "internet-payment-error", "Bitte gib einen gültigen monatlichen Preis ein.", "Lütfen geçerli bir aylık ücret gir.", paymentValid);
+    const dataVolume = document.querySelector("#data-volume");
+    const dataVolumeValue = dataVolume.value.trim();
+    const dataVolumeValid = dataVolumeValue === "" || (Number.isFinite(Number(dataVolumeValue)) && Number(dataVolumeValue) > 0);
+    const dataVolumeOk = showJourneyError(dataVolume, "internet-data-volume-error", "Bitte gib ein gültiges Datenvolumen ein.", "Lütfen geçerli bir veri miktarı gir.", dataVolumeValid);
+    if (!nameValid || !postalValid || !paymentOk || !dataVolumeOk) { [name, postal, payment, dataVolume].find((input) => input.getAttribute("aria-invalid") === "true")?.focus(); return; }
+    const data = new FormData(internetForm);
     const tr = journeyLanguage() === "tr";
-    const rows = [
-        [tr ? "E-posta adresi" : "E-Mail-Adresse", data.email],
-        [tr ? "Posta kodu" : "PLZ", data.postalCode],
-        [tr ? "Mevcut sağlayıcı" : "Aktueller Anbieter", internetLabel(data.provider)],
-        [tr ? "Şu anki hız" : "Aktuelle Geschwindigkeit", internetLabel(data.currentSpeed)],
-        [tr ? "Bağlantı" : "Anschluss", internetLabel(data.connection)],
-        [tr ? "Kullanım sınırı" : "Datenvolumen", data.dataLimit === "yes" ? (data.dataVolume ? `${data.dataVolume} GB/${tr ? "ay" : "Monat"}` : (tr ? "Var" : "Ja")) : internetLabel(data.dataLimit)],
-        [tr ? "Güncel fiyat" : "Aktueller Preis", internetLabel(data.payment, "payment")],
-        [tr ? "İstenen hız" : "Gewünschte Geschwindigkeit", internetLabel(data.desiredSpeed)]
-    ];
-    const list = document.querySelector("[data-internet-summary-list]");
-    list.replaceChildren(...rows.filter(([, value]) => value !== "–").flatMap(([term, value]) => {
-        const dt = document.createElement("dt");
-        const dd = document.createElement("dd");
-        dt.textContent = term;
-        dd.textContent = value;
-        return [dt, dd];
-    }));
-}
-
-document.querySelector("[data-internet-summary]")?.addEventListener("click", () => {
-    if (!internetForm.reportValidity()) return;
-    const data = Object.fromEntries(new FormData(internetForm));
-    if (!/^[0-9]{5}$/.test(data.postalCode)) {
-        document.querySelector("#internet-postal").setCustomValidity(journeyLanguage() === "tr" ? "5 rakamlı geçerli bir posta kodu girin." : "Bitte geben Sie eine gültige 5-stellige Postleitzahl ein.");
-        internetForm.reportValidity();
-        return;
-    }
-    document.querySelector("#internet-postal").setCustomValidity("");
-    internetData = data;
-    renderInternetSummary(data);
-    const section = document.querySelector("[data-summary-section]");
-    section.hidden = false;
-    section.scrollIntoView({ behavior: "smooth" });
-});
-
-document.querySelector("[data-edit-internet]")?.addEventListener("click", () => {
-    document.querySelector("[data-summary-section]").hidden = true;
-    internetForm.scrollIntoView({ behavior: "smooth" });
-});
-
-document.querySelector("[data-send-internet]")?.addEventListener("click", () => {
-    if (!internetData) return;
-    const tr = journeyLanguage() === "tr";
-    const subject = tr ? "İnternet tarifesi kontrol talebi" : "Anfrage zur Internettarifprüfung";
-    const lines = tr
-        ? ["Merhaba TarifYol,", "", "internet tarifemi kontrol ettirmek istiyorum.", "", `E-posta: ${internetData.email}`, `Posta kodu: ${internetData.postalCode}`]
-        : ["Hallo TarifYol,", "", "ich möchte meinen Internettarif prüfen lassen.", "", `E-Mail: ${internetData.email}`, `PLZ: ${internetData.postalCode}`];
-    if (internetData.provider) lines.push(`${tr ? "Mevcut sağlayıcı" : "Aktueller Anbieter"}: ${internetData.provider}`);
-    if (internetData.currentSpeed) lines.push(`${tr ? "Şu anki hız" : "Aktuelle Geschwindigkeit"}: ${internetLabel(internetData.currentSpeed)}`);
-    if (internetData.connection) lines.push(`${tr ? "Bağlantı türü" : "Anschlussart"}: ${internetLabel(internetData.connection)}`);
-    if (internetData.dataLimit) lines.push(`${tr ? "Kullanım sınırı" : "Datenvolumen"}: ${internetData.dataLimit === "yes" ? (internetData.dataVolume ? internetData.dataVolume + (tr ? " GB/ay" : " GB/Monat") : (tr ? "Var" : "Ja")) : internetLabel(internetData.dataLimit)}`);
-    if (internetData.payment) lines.push(`${tr ? "Güncel aylık fiyat" : "Aktueller monatlicher Preis"}: ${internetLabel(internetData.payment, "payment")}`);
-    if (internetData.desiredSpeed) lines.push(`${tr ? "İstenen hız" : "Gewünschte Geschwindigkeit"}: ${internetLabel(internetData.desiredSpeed)}`);
-    lines.push("", tr ? "Benimle iletişime geçebilir misiniz?" : "Bitte melden Sie sich bei mir.");
-    const body = lines.join("\n");
-    window.location.href = buildMailto(subject, body);
+    const lines = tr ? ["Merhaba TarifYol,", "", "internet tarifemin kontrol edilmesini istiyorum.", "", "MÜŞTERİ BİLGİLERİ", `Ad Soyad: ${data.get("customerName")}`, `Posta Kodu: ${data.get("postalCode")}`] : ["Hallo TarifYol,", "", "ich möchte meinen Internettarif prüfen lassen.", "", "KUNDENDATEN", `Name: ${data.get("customerName")}`, `PLZ: ${data.get("postalCode")}`];
+    const tariffLines = tr ? ["TARİFE BİLGİLERİ", "Alan: İnternet"] : ["TARIFDATEN", "Bereich: Internet"];
+    if (data.get("provider")) tariffLines.push(`${tr ? "Mevcut Sağlayıcı" : "Aktueller Anbieter"}: ${data.get("provider")}`);
+    if (data.get("currentSpeed")) tariffLines.push(`${tr ? "Şu Anki Hız" : "Aktuelle Geschwindigkeit"}: ${internetLabel(data.get("currentSpeed"))}`);
+    if (data.get("connection")) tariffLines.push(`${tr ? "Bağlantı Türü" : "Anschlussart"}: ${internetLabel(data.get("connection"))}`);
+    if (data.get("dataLimit")) tariffLines.push(`${tr ? "Kullanım Sınırı" : "Datenvolumen"}: ${data.get("dataLimit") === "yes" && data.get("dataVolume") ? `${data.get("dataVolume")} GB/${tr ? "ay" : "Monat"}` : internetLabel(data.get("dataLimit"))}`);
+    if (data.get("payment")) tariffLines.push(`${tr ? "Güncel Aylık Fiyat" : "Aktueller monatlicher Preis"}: ${internetLabel(data.get("payment"), "payment")}`);
+    if (data.get("desiredSpeed")) tariffLines.push(`${tr ? "İstenen Hız" : "Gewünschte Geschwindigkeit"}: ${internetLabel(data.get("desiredSpeed"))}`);
+    if (tariffLines.length > 2) lines.push("", ...tariffLines);
+    lines.push("", tr ? "Teşekkür ederim." : "Vielen Dank.");
+    window.openTarifYolWhatsAppMessage?.(lines.join("\n"));
 });
 
 function updateKfzSupportLink() {
