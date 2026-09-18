@@ -49,10 +49,18 @@ function showJourneyError(input, id, de, tr, valid) {
     return valid;
 }
 
+function isMobileWhatsAppEnvironment() {
+    return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+}
+
 function openTarifYolWhatsApp(message) {
     const number = String(window.TARIFYOL_WHATSAPP_NUMBER || "").replace(/[^0-9]/g, "");
     if (!/^[1-9][0-9]{7,14}$/.test(number)) return false;
-    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    const encodedMessage = encodeURIComponent(message);
+    const destination = isMobileWhatsAppEnvironment()
+        ? `https://wa.me/${number}?text=${encodedMessage}`
+        : `https://web.whatsapp.com/send?phone=${number}&text=${encodedMessage}`;
+    window.location.assign(destination);
     return true;
 }
 
