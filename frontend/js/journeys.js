@@ -49,10 +49,18 @@ function showJourneyError(input, id, de, tr, valid) {
     return valid;
 }
 
+function isMobileWhatsAppEnvironment() {
+    return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+}
+
 function openTarifYolWhatsApp(message) {
     const number = String(window.TARIFYOL_WHATSAPP_NUMBER || "").replace(/[^0-9]/g, "");
     if (!/^[1-9][0-9]{7,14}$/.test(number)) return false;
-    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    const encodedMessage = encodeURIComponent(message);
+    const destination = isMobileWhatsAppEnvironment()
+        ? `https://wa.me/${number}?text=${encodedMessage}`
+        : `https://web.whatsapp.com/send?phone=${number}&text=${encodedMessage}`;
+    window.location.assign(destination);
     return true;
 }
 
@@ -181,10 +189,10 @@ gasForm?.addEventListener("submit", (event) => {
     const data = new FormData(gasForm);
     const tr = journeyLanguage() === "tr";
     const lines = tr ? ["Merhaba TarifYol,", "", "doğal gaz tarifemin kontrol edilmesini istiyorum.", "", "MÜŞTERİ BİLGİLERİ", `Ad Soyad: ${nameInput.value.trim()}`, `Posta Kodu: ${data.get("postalCode")}`] : ["Hallo TarifYol,", "", "ich möchte meinen Gastarif prüfen lassen.", "", "KUNDENDATEN", `Name: ${nameInput.value.trim()}`, `PLZ: ${data.get("postalCode")}`];
-    const tariffLines = tr ? ["TARİFE BİLGİLERİ", "Alan: Doğal gaz"] : ["TARIFDATEN", "Bereich: Gas"];
-    if (consumptionValue) tariffLines.push(tr ? `Yıllık Tüketim: ${gasConsumptionEstimated ? "yaklaşık " : ""}${localizedNumber(consumption)} kWh` : `Jahresverbrauch: ${gasConsumptionEstimated ? "ca. " : ""}${localizedNumber(consumption)} kWh`);
-    if (data.get("payment")) tariffLines.push(tr ? `Güncel Aylık Ödeme: ${data.get("payment")} EUR/ay` : `Aktueller Abschlag: ${data.get("payment")} EUR/Monat`);
-    if (tariffLines.length > 2) lines.push("", ...tariffLines);
+    const tariffLines = tr ? ["TARİFE BİLGİLERİ"] : ["TARIFANGABEN"];
+    if (consumptionValue) tariffLines.push(tr ? `Yıllık tüketim: ${gasConsumptionEstimated ? "yaklaşık " : ""}${localizedNumber(consumption)} kWh` : `Jahresverbrauch: ${gasConsumptionEstimated ? "ca. " : ""}${localizedNumber(consumption)} kWh`);
+    if (data.get("payment")) tariffLines.push(tr ? `Aylık ödeme: ${data.get("payment")} €` : `Monatlicher Abschlag: ${data.get("payment")} €`);
+    if (tariffLines.length > 1) lines.push("", ...tariffLines);
     lines.push("", tr ? "Teşekkür ederim." : "Vielen Dank.");
     window.openTarifYolWhatsAppMessage?.(lines.join("\n"));
 });
@@ -232,14 +240,14 @@ internetForm?.addEventListener("submit", (event) => {
     const data = new FormData(internetForm);
     const tr = journeyLanguage() === "tr";
     const lines = tr ? ["Merhaba TarifYol,", "", "internet tarifemin kontrol edilmesini istiyorum.", "", "MÜŞTERİ BİLGİLERİ", `Ad Soyad: ${data.get("customerName")}`, `Posta Kodu: ${data.get("postalCode")}`] : ["Hallo TarifYol,", "", "ich möchte meinen Internettarif prüfen lassen.", "", "KUNDENDATEN", `Name: ${data.get("customerName")}`, `PLZ: ${data.get("postalCode")}`];
-    const tariffLines = tr ? ["TARİFE BİLGİLERİ", "Alan: İnternet"] : ["TARIFDATEN", "Bereich: Internet"];
+    const tariffLines = tr ? ["İNTERNET BİLGİLERİ"] : ["INTERNETANGABEN"];
     if (data.get("provider")) tariffLines.push(`${tr ? "Mevcut Sağlayıcı" : "Aktueller Anbieter"}: ${data.get("provider")}`);
     if (data.get("currentSpeed")) tariffLines.push(`${tr ? "Şu Anki Hız" : "Aktuelle Geschwindigkeit"}: ${internetLabel(data.get("currentSpeed"))}`);
     if (data.get("connection")) tariffLines.push(`${tr ? "Bağlantı Türü" : "Anschlussart"}: ${internetLabel(data.get("connection"))}`);
     if (data.get("dataLimit")) tariffLines.push(`${tr ? "Kullanım Sınırı" : "Datenvolumen"}: ${data.get("dataLimit") === "yes" && data.get("dataVolume") ? `${data.get("dataVolume")} GB/${tr ? "ay" : "Monat"}` : internetLabel(data.get("dataLimit"))}`);
     if (data.get("payment")) tariffLines.push(`${tr ? "Güncel Aylık Fiyat" : "Aktueller monatlicher Preis"}: ${internetLabel(data.get("payment"), "payment")}`);
     if (data.get("desiredSpeed")) tariffLines.push(`${tr ? "İstenen Hız" : "Gewünschte Geschwindigkeit"}: ${internetLabel(data.get("desiredSpeed"))}`);
-    if (tariffLines.length > 2) lines.push("", ...tariffLines);
+    if (tariffLines.length > 1) lines.push("", ...tariffLines);
     lines.push("", tr ? "Teşekkür ederim." : "Vielen Dank.");
     window.openTarifYolWhatsAppMessage?.(lines.join("\n"));
 });
