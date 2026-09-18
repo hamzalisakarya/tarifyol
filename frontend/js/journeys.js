@@ -57,10 +57,15 @@ function openTarifYolWhatsApp(message) {
     const number = String(window.TARIFYOL_WHATSAPP_NUMBER || "").replace(/[^0-9]/g, "");
     if (!/^[1-9][0-9]{7,14}$/.test(number)) return false;
     const encodedMessage = encodeURIComponent(message);
-    const destination = isMobileWhatsAppEnvironment()
+    const isMobile = isMobileWhatsAppEnvironment();
+    const destination = isMobile
         ? `https://wa.me/${number}?text=${encodedMessage}`
         : `https://web.whatsapp.com/send?phone=${number}&text=${encodedMessage}`;
-    window.location.assign(destination);
+    if (isMobile) {
+        window.location.assign(destination);
+    } else {
+        window.open(destination, "_blank", "noopener,noreferrer");
+    }
     return true;
 }
 
