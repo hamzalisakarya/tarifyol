@@ -21,6 +21,11 @@ const translations = {
         heroCopy: "Tarife besser verstehen, Möglichkeiten prüfen und beim Wechsel Unterstützung erhalten – auf Deutsch und Türkisch.",
         contactButton: "Tarif prüfen →",
         emailButton: "E-Mail senden",
+        whatsappContactButton: "WhatsApp schreiben",
+        contactChoiceTitle: "Kontakt aufnehmen",
+        contactChoiceText: "Wählen Sie, wie Sie uns kontaktieren möchten.",
+        contactWhatsApp: "Per WhatsApp schreiben",
+        contactEmail: "Per E-Mail schreiben",
         learnMore: "So funktioniert’s →",
         contactNote: "Unverbindlich per E-Mail Kontakt aufnehmen",
         servicesEyebrow: "Unsere Themen",
@@ -65,7 +70,7 @@ const translations = {
         transparencyText: "TarifYol ist kein Energie- oder Internetanbieter. Ein Vertrag kommt – sofern du dich dafür entscheidest – direkt mit dem jeweiligen Anbieter oder Partner zustande. Für erfolgreiche Vermittlungen kann TarifYol eine Vergütung erhalten; für dich steht die freie Entscheidung im Mittelpunkt.",
         ctaEyebrow: "Einfach ins Gespräch kommen",
         ctaTitle: "Fragen zu Ihrem Tarif?",
-        ctaText: "Schreiben Sie uns. Wir klären gemeinsam, welcher nächste Schritt sinnvoll ist.",
+        ctaText: "Schreiben Sie uns per WhatsApp oder E-Mail. Wir klären gemeinsam, welcher nächste Schritt sinnvoll ist.",
         footerClaim: "Persönliche Unterstützung auf Deutsch und Türkisch.",
         footerLocation: "Für Kundinnen und Kunden in Deutschland",
         electricityPageTitle: "Stromtarif prüfen – TarifYol", nextStepsNav: "So geht es weiter", privacyNav: "Datenschutz",
@@ -116,6 +121,11 @@ const translations = {
         heroCopy: "Tarifeleri daha iyi anlayın, seçenekleri inceleyin ve değişim sürecinde Almanca ve Türkçe destek alın.",
         contactButton: "Tarifeyi kontrol et →",
         emailButton: "E-posta gönder",
+        whatsappContactButton: "WhatsApp'tan yaz",
+        contactChoiceTitle: "İletişime geçin",
+        contactChoiceText: "Bizimle nasıl iletişime geçmek istediğinizi seçin.",
+        contactWhatsApp: "WhatsApp'tan yazın",
+        contactEmail: "E-posta gönderin",
         learnMore: "Nasıl çalışır? →",
         contactNote: "E-posta ile bağlayıcı olmayan ilk iletişim",
         servicesEyebrow: "Hizmet alanlarımız",
@@ -160,7 +170,7 @@ const translations = {
         transparencyText: "TarifYol bir enerji veya internet sağlayıcısı değildir. Tercih etmeniz halinde sözleşme doğrudan ilgili sağlayıcı veya iş ortağıyla yapılır. Başarılı yönlendirmeler için TarifYol ücret alabilir; seçim özgürlüğü her zaman size aittir.",
         ctaEyebrow: "Kolayca iletişime geçin",
         ctaTitle: "Tarifenizle ilgili sorunuz mu var?",
-        ctaText: "Bize yazın. Bir sonraki anlamlı adımı birlikte netleştirelim.",
+        ctaText: "Bize WhatsApp veya e-posta üzerinden yazın. Bir sonraki uygun adımı birlikte değerlendirelim.",
         footerClaim: "Almanca ve Türkçe kişisel destek.",
         footerLocation: "Almanya’daki müşteriler için",
         electricityPageTitle: "Elektrik tarifeni kontrol et – TarifYol", nextStepsNav: "Sonraki adımlar", privacyNav: "Gizlilik",
@@ -226,6 +236,58 @@ function updateMenuLabel(isOpen) {
     }
 }
 
+function contactMailtoUrl() {
+    const tr = currentLanguage === "tr";
+    const subject = tr ? "TarifYol üzerinden iletişim" : "Anfrage über TarifYol";
+    const body = tr
+        ? "Merhaba TarifYol,\n\nbir tarife hakkında sorum var."
+        : "Hallo TarifYol,\n\nich habe eine Frage zu einem Tarif.";
+    return `mailto:info@tarifyol.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function updateContactMenuLinks() {
+    document.querySelectorAll("[data-contact-email]").forEach((link) => {
+        link.href = contactMailtoUrl();
+    });
+}
+
+function setupContactMenus() {
+    document.querySelectorAll('.header-panel [data-i18n="contactShort"]').forEach((contactLink) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "contact-menu";
+        wrapper.innerHTML = '<button class="button button-small button-primary contact-menu-trigger" type="button" aria-haspopup="menu" aria-expanded="false" data-i18n="contactShort">Kontakt</button><div class="contact-menu-popover" role="menu" hidden><p class="contact-menu-title" data-i18n="contactChoiceTitle">Kontakt aufnehmen</p><p class="contact-menu-text" data-i18n="contactChoiceText">Wählen Sie, wie Sie uns kontaktieren möchten.</p><button class="contact-menu-option" type="button" role="menuitem" data-contact-whatsapp data-i18n="contactWhatsApp">Per WhatsApp schreiben</button><a class="contact-menu-option" role="menuitem" data-contact-email data-i18n="contactEmail" href="#">Per E-Mail schreiben</a></div>';
+        contactLink.replaceWith(wrapper);
+
+        const trigger = wrapper.querySelector(".contact-menu-trigger");
+        const popover = wrapper.querySelector(".contact-menu-popover");
+        const close = () => {
+            popover.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+        };
+        trigger.addEventListener("click", () => {
+            const isOpening = popover.hidden;
+            document.querySelectorAll(".contact-menu-popover").forEach((menu) => { menu.hidden = true; });
+            document.querySelectorAll(".contact-menu-trigger").forEach((button) => { button.setAttribute("aria-expanded", "false"); });
+            popover.hidden = !isOpening;
+            trigger.setAttribute("aria-expanded", String(isOpening));
+        });
+        wrapper.querySelector("[data-contact-whatsapp]").addEventListener("click", () => {
+            close();
+            const message = currentLanguage === "tr"
+                ? "Merhaba TarifYol,\n\nbir tarife hakkında sorum var ve sizinle iletişime geçmek istiyorum."
+                : "Hallo TarifYol,\n\nich habe eine Frage zu einem Tarif und möchte gerne Kontakt aufnehmen.";
+            window.openTarifYolWhatsAppMessage?.(message);
+        });
+        document.addEventListener("click", (event) => {
+            if (!wrapper.contains(event.target)) close();
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") close();
+        });
+    });
+    updateContactMenuLinks();
+}
+
 function closeMenu() {
     menuToggle?.setAttribute("aria-expanded", "false");
     headerPanel?.classList.remove("is-open");
@@ -263,6 +325,7 @@ function setLanguage(language) {
     }
 
     updateMenuLabel(menuToggle?.getAttribute("aria-expanded") === "true");
+    updateContactMenuLinks();
     if (latestEstimate) renderConsumptionEstimate(latestEstimate);
     document.dispatchEvent(new CustomEvent("tarifyol:languagechange", { detail: { language: currentLanguage } }));
 }
@@ -429,6 +492,8 @@ tariffForm?.addEventListener("submit", (event) => {
     const body = lines.join("\n");
     window.openTarifYolWhatsAppMessage?.(body);
 });
+
+setupContactMenus();
 
 let savedLanguage = "de";
 try {
