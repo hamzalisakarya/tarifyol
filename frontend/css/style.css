@@ -167,7 +167,7 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .tariff-layout > .tariff-left, .tariff-layout > .tariff-right { min-width: 0; }
 .tariff-layout > .tariff-right .tariff-form { width: 100%; }
 .strom-hero h1 { font-size: clamp(3rem, 6vw, 5rem); }
-body:not(.kfz-page) .strom-hero { padding: clamp(3.5rem, 6vw, 5.5rem) 0; }
+body:not(.kfz-page) .strom-hero { padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(1.5rem, 2vw, 2rem); }
 body:not(.kfz-page) .strom-hero-grid { gap: clamp(2rem, 5vw, 4.5rem); }
 body:not(.kfz-page) .strom-hero > .container > div > .eyebrow:first-child { display: none; }
 body:not(.kfz-page) .hero-copy { margin-bottom: 1.25rem; }
