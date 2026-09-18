@@ -143,6 +143,8 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .footer-main p { margin: 0.6rem 0 0; color: var(--color-muted); }
 .footer-email { display: inline-block; margin-top: 0.4rem; color: var(--color-primary-dark); font-weight: 700; text-underline-offset: 0.25em; }
 .footer-main nav { display: flex; align-items: flex-start; justify-content: flex-end; gap: 1.5rem; flex-wrap: wrap; }
+.footer-simple { justify-content: flex-end; }
+.footer-simple nav { width: 100%; }
 .footer-main nav a { color: var(--color-muted); text-underline-offset: 0.25em; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; color: var(--color-muted); border-top: 1px solid var(--color-border); font-size: 0.82rem; }
 .footer-bottom p { margin: 0; }
@@ -161,8 +163,18 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 
 /* Strom tariff journey */
 .strom-hero { padding: clamp(4rem, 8vw, 7rem) 0; background: radial-gradient(circle at 90% 15%, rgba(223, 243, 166, 0.55), transparent 25rem), var(--color-soft); }
-.strom-hero-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.7fr); align-items: start; gap: clamp(3rem, 8vw, 7rem); }
+.strom-hero-grid, .tariff-layout { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.7fr); align-items: start; gap: clamp(3rem, 8vw, 7rem); }
+.tariff-layout > .tariff-left, .tariff-layout > .tariff-right { min-width: 0; }
+.tariff-layout > .tariff-right .tariff-form { width: 100%; }
 .strom-hero h1 { font-size: clamp(3rem, 6vw, 5rem); }
+body:not(.kfz-page) .strom-hero { padding: clamp(3.5rem, 6vw, 5.5rem) 0; }
+body:not(.kfz-page) .strom-hero-grid { gap: clamp(2rem, 5vw, 4.5rem); }
+body:not(.kfz-page) .strom-hero > .container > div > .eyebrow:first-child { display: none; }
+body:not(.kfz-page) .hero-copy { margin-bottom: 1.25rem; }
+body:not(.kfz-page) .inline-trust { margin-top: 1rem; }
+body:not(.kfz-page) .main-nav a[href="#next-steps"] { display: none; }
+body:not(.kfz-page) .strom-hero ~ .section#learn-more { padding-block: clamp(3rem, 5vw, 5rem); }
+body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-bottom: 2rem; }
 .inline-trust { display: flex; align-items: flex-start; gap: 0.65rem; max-width: 39rem; margin-top: 1.5rem; padding: 0.9rem 1rem; color: var(--color-primary-dark); background: rgba(255, 255, 255, 0.72); border: 1px solid var(--color-border); border-radius: var(--radius-small); font-size: 0.9rem; font-weight: 700; }
 .inline-trust > span:first-child { display: grid; width: 1.4rem; height: 1.4rem; flex: none; place-items: center; color: var(--color-primary-dark); background: var(--color-accent); border-radius: 50%; }
 .tariff-form { padding: clamp(1.5rem, 4vw, 2.25rem); background: white; border: 1px solid var(--color-border); border-radius: var(--radius-large); box-shadow: var(--shadow-large); }
@@ -171,6 +183,12 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .form-heading h2 { margin: 0; font-size: 1.45rem; }
 .field { margin-top: 1.2rem; }
 .field label { display: block; margin-bottom: 0.45rem; font-weight: 750; }
+.tariff-form label[for="customer-name"]::after,
+.tariff-form label[for="postal-code"]::after,
+.tariff-form label[for="gas-name"]::after,
+.tariff-form label[for="gas-postal"]::after,
+.tariff-form label[for="internet-name"]::after,
+.tariff-form label[for="internet-postal"]::after { content: " *"; color: var(--color-primary); font-weight: 800; }
 .field input { width: 100%; min-height: 3.4rem; padding: 0.75rem 0.9rem; color: var(--color-text); background: white; border: 1px solid #b9ccc5; border-radius: var(--radius-small); font: inherit; }
 .field input:focus { border-color: var(--color-primary); outline: 3px solid rgba(169, 215, 77, 0.38); }
 .field input[aria-invalid="true"] { border-color: #a43f35; }
@@ -258,6 +276,7 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
     .header-panel .button { align-self: flex-start; }
     .card-grid { grid-template-columns: repeat(2, 1fr); }
     .strom-hero-grid { grid-template-columns: 1fr; }
+    body:not(.kfz-page) .strom-hero-grid { gap: 2.5rem; }
 }
 
 @media (max-width: 48rem) {
@@ -277,6 +296,7 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
     .site-logo-icon { width: 2rem; height: 2rem; }
     .site-wordmark { font-size: 1.3rem; }
     .hero { padding: 4rem 0; }
+    body:not(.kfz-page) .strom-hero { padding: 4rem 0; }
     .hero h1 { font-size: clamp(2.55rem, 12vw, 3.65rem); }
     .hero-card { width: min(100%, 21rem); margin-top: 1.25rem; }
     .hero-actions { align-items: flex-start; flex-direction: column; gap: 1rem; }
@@ -287,6 +307,11 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
     .steps li:last-child { border-bottom: 0; }
     .transparency-box { grid-template-columns: 1fr; }
     .contact-box .button { width: 100%; }
+    .home-contact-actions { align-items: stretch; flex-direction: column; width: 100%; }
+    .home-contact-actions .button { width: 100%; }
+    .contact-menu { width: 100%; }
+    .contact-menu-trigger { width: 100%; }
+    .contact-menu-popover { position: static; width: 100%; margin-top: 0.5rem; }
     .footer-main nav, .footer-bottom { align-items: flex-start; flex-direction: column; }
     .choice-grid { grid-template-columns: 1fr; }
     .choice-grid-six { grid-template-columns: repeat(3, 1fr); }
@@ -396,10 +421,18 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .home-steps p { margin: 0; color: var(--color-muted); font-size: 0.95rem; }
 .home-contact { padding-block: clamp(4rem, 7vw, 6rem); color: white; background: var(--color-primary-dark); }
 .home-contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+.home-contact-actions { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 .home-contact .eyebrow { color: var(--color-accent); }
 .home-contact h2 { max-width: 18ch; }
 .home-contact p { max-width: 38rem; margin-bottom: 0; color: #d7e7e2; }
 .home-contact .button { flex: none; }
+.contact-menu { position: relative; flex: none; }
+.contact-menu-popover { position: absolute; z-index: 20; top: calc(100% + 0.5rem); right: 0; width: min(18rem, calc(100vw - 2.5rem)); padding: 1rem; color: var(--color-text); background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); box-shadow: var(--shadow-large); }
+.contact-menu-title, .contact-menu-text { margin: 0; }
+.contact-menu-title { color: var(--color-primary-dark); font-weight: 800; }
+.contact-menu-text { margin-top: 0.35rem; color: var(--color-muted); font-size: 0.82rem; }
+.contact-menu-option { display: block; width: 100%; margin-top: 0.75rem; padding: 0.65rem 0.75rem; color: var(--color-primary-dark); background: var(--color-soft); border: 1px solid var(--color-border); border-radius: var(--radius-small); font: inherit; font-size: 0.88rem; font-weight: 750; text-align: left; text-decoration: none; cursor: pointer; }
+.contact-menu-option:hover { border-color: var(--color-primary); background: #e8f2ec; }
 @media (max-width: 48rem) {
     .home-hero-inner { min-height: auto; grid-template-columns: 1fr; gap: 2.5rem; padding-block: 4.5rem; }
     .home-page h1 { max-width: 12ch; font-size: clamp(2.8rem, 13vw, 4.8rem); }

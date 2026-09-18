@@ -71,8 +71,15 @@ function openTarifYolWhatsApp(message) {
 
 window.openTarifYolWhatsAppMessage = openTarifYolWhatsApp;
 
+document.querySelector("[data-whatsapp-contact]")?.addEventListener("click", () => {
+    const message = journeyLanguage() === "tr"
+        ? "Merhaba TarifYol,\n\nbir tarife hakkında sorum var."
+        : "Hallo TarifYol,\n\nich habe eine Frage zu einem Tarif.";
+    window.openTarifYolWhatsAppMessage?.(message);
+});
+
 function addGasProviderProgram() {
-    const target = document.querySelector(".strom-hero-grid > div:first-child");
+    const target = document.querySelector(".tariff-layout > .tariff-left");
     if (!document.querySelector("#gas-form") || !target || document.querySelector("#gas-provider-program")) return;
     const section = document.createElement("section");
     section.id = "gas-provider-program";
