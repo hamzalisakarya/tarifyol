@@ -195,7 +195,7 @@ const storageKey = "tarifyol-language";
 const legacyStorageKey = "feelyng-language";
 
 // Enter the official TarifYol WhatsApp number here in international format, without +, spaces or punctuation.
-const TARIFYOL_WHATSAPP_NUMBER = "";
+const TARIFYOL_WHATSAPP_NUMBER = "491776942457";
 window.TARIFYOL_WHATSAPP_NUMBER = TARIFYOL_WHATSAPP_NUMBER;
 const hasConfiguredWhatsApp = /^[1-9][0-9]{7,14}$/.test(TARIFYOL_WHATSAPP_NUMBER);
 
@@ -421,10 +421,10 @@ tariffForm?.addEventListener("submit", (event) => {
     const lines = currentLanguage === "tr"
         ? ["Merhaba TarifYol,", "", "elektrik tarifemin kontrol edilmesini istiyorum.", "", "MÜŞTERİ BİLGİLERİ", `Ad Soyad: ${name}`, `Posta Kodu: ${postalCode.value.trim()}`]
         : ["Hallo TarifYol,", "", "ich möchte meinen Stromtarif prüfen lassen.", "", "KUNDENDATEN", `Name: ${name}`, `PLZ: ${postalCode.value.trim()}`];
-    const tariffLines = currentLanguage === "tr" ? ["TARİFE BİLGİLERİ", "Alan: Elektrik"] : ["TARIFDATEN", "Bereich: Strom"];
+    const tariffLines = currentLanguage === "tr" ? ["TARİFE BİLGİLERİ"] : ["TARIFANGABEN"];
     if (consumptionValue !== "") tariffLines.push(currentLanguage === "tr" ? `Yıllık Tüketim: ${consumptionIsEstimated ? "yaklaşık " : ""}${formattedConsumption} kWh` : `Jahresverbrauch: ${consumptionIsEstimated ? "ca. " : ""}${formattedConsumption} kWh`);
-    if (currentPayment) tariffLines.push(currentLanguage === "tr" ? `Güncel Aylık Ödeme: ${currentPayment} EUR/ay` : `Aktueller Abschlag: ${currentPayment} EUR/Monat`);
-    if (tariffLines.length > 2) lines.push("", ...tariffLines);
+    if (currentPayment) tariffLines.push(currentLanguage === "tr" ? `Aylık ödeme: ${currentPayment} €` : `Monatlicher Abschlag: ${currentPayment} €`);
+    if (tariffLines.length > 1) lines.push("", ...tariffLines);
     lines.push("", currentLanguage === "tr" ? "Teşekkür ederim." : "Vielen Dank.");
     const body = lines.join("\n");
     window.openTarifYolWhatsAppMessage?.(body);
