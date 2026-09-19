@@ -49,6 +49,7 @@ h1, h2, h3, p { overflow-wrap: anywhere; }
 .language-switcher { display: flex; align-items: center; gap: 0.25rem; color: var(--color-muted); }
 .language-switcher button { padding: 0.35rem; border: 0; background: transparent; color: var(--color-muted); font-size: 0.85rem; font-weight: 800; cursor: pointer; }
 .language-switcher button[aria-pressed="true"] { color: var(--color-primary-dark); }
+.header-mobile-language { display: none; }
 .menu-toggle { display: none; width: 2.8rem; height: 2.8rem; padding: 0.65rem; border: 1px solid var(--color-border); border-radius: var(--radius-small); background: var(--color-surface); cursor: pointer; }
 .menu-toggle > span:not(.sr-only) { display: block; width: 100%; height: 2px; margin: 4px 0; background: var(--color-text); transition: transform 0.2s ease, opacity 0.2s ease; }
 .menu-toggle[aria-expanded="true"] > span:nth-last-child(3) { transform: translateY(6px) rotate(45deg); }
@@ -141,7 +142,6 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .site-footer { padding-top: 3.5rem; background: white; border-top: 1px solid var(--color-border); }
 .footer-main { display: flex; justify-content: space-between; gap: 2rem; padding-bottom: 2.5rem; }
 .footer-main p { margin: 0.6rem 0 0; color: var(--color-muted); }
-.footer-email { display: inline-block; margin-top: 0.4rem; color: var(--color-primary-dark); font-weight: 700; text-underline-offset: 0.25em; }
 .footer-main nav { display: flex; align-items: flex-start; justify-content: flex-end; gap: 1.5rem; flex-wrap: wrap; }
 .footer-simple { justify-content: flex-end; }
 .footer-simple nav { width: 100%; }
@@ -268,7 +268,11 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
 .button-secondary { color: var(--color-primary-dark); background: var(--color-soft); border-color: var(--color-border); }
 
 @media (max-width: 64rem) {
-    .menu-toggle { display: block; }
+    .header-inner { gap: 0.75rem; }
+    .header-mobile-language { display: flex; flex: none; gap: 0.1rem; margin-left: auto; }
+    .header-mobile-language button { padding: 0.2rem; font-size: 0.76rem; }
+    .header-panel > .language-switcher { display: none; }
+    .menu-toggle { display: block; flex: 0 0 2.8rem; }
     .header-panel { position: fixed; top: var(--header-height); right: 0; left: 0; display: none; align-items: stretch; flex-direction: column; gap: 1.4rem; padding: 1.5rem max(1.25rem, calc((100vw - var(--container-width)) / 2)); background: var(--color-background); border-bottom: 1px solid var(--color-border); box-shadow: var(--shadow-small); }
     .header-panel.is-open { display: flex; }
     .main-nav { align-items: stretch; flex-direction: column; gap: 0; }
@@ -292,6 +296,7 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
 
 @media (max-width: 35rem) {
     .container { width: min(calc(100% - 1.5rem), var(--container-width)); }
+    .header-inner { gap: 0.45rem; }
     .site-logo { max-width: 7.5rem; gap: 0.45rem; }
     .site-logo-icon { width: 2rem; height: 2rem; }
     .site-wordmark { font-size: 1.3rem; }
