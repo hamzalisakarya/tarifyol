@@ -96,7 +96,7 @@ const translations = {
         nextTwoTitle: "TarifYol prüft die Möglichkeiten", nextTwoText: "Wir prüfen verfügbare Tarifmöglichkeiten.", nextThreeTitle: "Wir melden uns mit möglichen Optionen", nextThreeText: "Sie erhalten eine Rückmeldung an Ihre E-Mail-Adresse.",
         nextFourTitle: "Sie entscheiden, ob Sie weitermachen möchten", nextFourText: "Zusätzliche Vertragsdaten werden erst angefordert, wenn Sie fortfahren möchten und diese für den konkreten Vorgang erforderlich sind.",
         partnerProcess: "Je nach Anbieter und Partnerprozess können Sie den Abschluss selbst durchführen oder Unterstützung beim weiteren Ablauf erhalten.",
-        privacyEyebrow: "Ihre Daten", privacyHeading: "Erst prüfen, dann Daten", privacyText: "Für die erste Tarifprüfung benötigen wir keine IBAN und kein Geburtsdatum. Weitere Angaben werden erst benötigt, wenn Sie sich für einen Vertragsabschluss entscheiden und diese für den jeweiligen Vorgang erforderlich sind.",
+        privacyHeading: "Erst Tarif prüfen, dann erforderliche Angaben (IBAN, Geburtsdatum usw.)", privacyText: "Für die erste Prüfung reichen grundlegende Angaben aus. Weitere Angaben werden erst benötigt, wenn Sie mit einem Vertrag fortfahren möchten.",
         privacyLink: "Zur Datenschutzerklärung"
     },
     tr: {
@@ -196,7 +196,7 @@ const translations = {
         nextTwoTitle: "TarifYol seçenekleri kontrol eder", nextTwoText: "Mevcut tarife seçeneklerini kontrol ederiz.", nextThreeTitle: "Size uygun seçeneklerle geri dönüş yaparız", nextThreeText: "E-posta adresinize geri dönüş yaparız.",
         nextFourTitle: "Devam edip etmeyeceğinize siz karar verirsiniz", nextFourText: "Ek sözleşme bilgileri ancak devam etmek istediğinizde ve ilgili işlem için gerekli olduğunda istenir.",
         partnerProcess: "Sağlayıcı ve partner sürecine göre sözleşmeyi kendiniz tamamlayabilir veya sonraki adımlarda destek alabilirsiniz.",
-        privacyEyebrow: "Bilgileriniz", privacyHeading: "Önce tarife kontrolü, sonra gerekli bilgiler", privacyText: "İlk tarife kontrolü için IBAN veya doğum tarihinize ihtiyacımız yok. Diğer bilgiler ancak bir sözleşmeyle devam etmeye karar verdiğinizde ve ilgili işlem için gerçekten gerekli olduğunda istenir.",
+        privacyHeading: "Önce tarife kontrolü, sonra gerekli bilgiler (IBAN, doğum tarihi vb.)", privacyText: "İlk kontrol için yalnızca temel bilgiler yeterlidir. Ek bilgiler ancak sözleşmeyle devam etmek istediğinizde istenir.",
         privacyLink: "Gizlilik bildirimine git"
     }
 };
