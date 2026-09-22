@@ -239,16 +239,30 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
 .compact-fieldset { margin: 1.2rem 0 0; padding: 0; border: 0; }
 .compact-fieldset legend { margin-bottom: 0.55rem; padding: 0; font-weight: 750; }
 .compact-fieldset .field { margin-top: 0.85rem; }
-.provider-program { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem; margin-top: 2rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.72); border: 1px solid var(--color-border); border-radius: var(--radius-medium); }
+.provider-program { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.72); border: 1px solid var(--color-border); border-radius: var(--radius-medium); }
 .provider-program-copy h2 { margin: 0; font-size: 1.15rem; }
 .provider-program-copy p:last-child { max-width: 34rem; margin: 0.4rem 0 0; color: var(--color-muted); font-size: 0.88rem; }
 .provider-program-copy .eyebrow { margin-bottom: 0.35rem; }
-.provider-program-list { display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); align-items: center; gap: 0.75rem; padding: 0.65rem 0.75rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); }
+.provider-program-list { display: grid; grid-template-columns: 152px minmax(0, 300px); align-items: start; gap: 1.5rem; padding: 1rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); }
+.provider-partner-tile { display: grid; width: 152px; min-height: 120px; place-items: center; padding: 0.75rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: var(--radius-small); }
 .provider-creative { display: block; line-height: 0; }
 .provider-creative { width: 120px; max-width: 100%; justify-self: center; }
 .provider-creative img { display: block; width: 120px; height: 60px; max-width: 100%; object-fit: contain; }
 .provider-program-journey { margin-top: 1.75rem; }
-.provider-program-journey .provider-program-list { grid-template-columns: 120px; }
+.plan-b-advertisement { width: 300px; max-width: 100%; }
+.plan-b-advertisement a { display: block; width: 300px; max-width: 100%; line-height: 0; }
+.plan-b-advertisement img { display: block; width: 300px; max-width: 100%; height: auto; }
+.strom-provider-program .provider-program-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 0; background: transparent; border: 0; border-radius: 0; }
+.strom-provider-program .provider-partner-tile { width: auto; min-height: 120px; align-items: start; padding: 1rem; background: white; }
+.strom-provider-program .plan-b-advertisement { display: flex; width: auto; max-width: none; justify-content: center; padding: 1rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); }
+.strom-provider-program .plan-b-advertisement a { width: 100%; max-width: 300px; }
+.strom-provider-program .plan-b-advertisement img { width: 100%; max-width: 300px; height: auto; }
+.home-provider-program .provider-program-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding: 0; background: transparent; border: 0; border-radius: 0; }
+.home-provider-card { display: flex; min-width: 0; min-height: 7.5rem; align-items: center; justify-content: center; padding: 1rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); }
+.home-provider-card .provider-creative { width: 120px; max-width: 100%; }
+.plan-b-partner { grid-column: 1 / -1; display: flex; justify-content: center; min-height: 0; }
+.plan-b-partner a { display: block; width: min(100%, 970px); line-height: 0; }
+.plan-b-partner img { display: block; width: 100%; max-width: 970px; height: auto; }
 .speed-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .internet-form .compact-fieldset .choice-grid label > span { min-height: 2.7rem; padding: 0.5rem 0.65rem; line-height: 1.2; }
 .internet-form .speed-grid label:last-child { grid-column: span 2; }
@@ -416,9 +430,11 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
 .service-choice p { margin: 0; color: var(--color-muted); font-size: 0.96rem; }
 .choice-link { margin-top: auto; padding-top: 1.25rem; color: var(--color-primary); font-size: 0.9rem; font-weight: 800; }
 .home-trust { background: #f4f8f5; border-block: 1px solid var(--color-border); }
-.home-trust-inner { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); align-items: start; gap: clamp(2rem, 8vw, 8rem); }
-.home-trust p { max-width: 42rem; margin: 0; color: var(--color-muted); font-size: 1.05rem; }
-.language-note { display: inline-block; margin-top: 1.5rem; color: var(--color-primary); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.home-trust-box { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 1rem; padding: 1.25rem 1.5rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-medium); }
+.home-trust-icon { display: grid; width: 2.25rem; height: 2.25rem; place-items: center; color: var(--color-primary); background: var(--color-soft); border-radius: 50%; }
+.home-trust-icon svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.home-trust-copy h2 { margin: 0; font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.2; letter-spacing: -0.025em; }
+.home-trust-copy p { max-width: 52rem; margin: 0.45rem 0 0; color: var(--color-muted); font-size: 0.96rem; line-height: 1.5; }
 .home-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .home-steps li { padding: 1.5rem 1.25rem; border-top: 1px solid var(--color-primary); }
 .home-steps li > span { color: var(--color-primary); font-size: 0.8rem; font-weight: 850; letter-spacing: 0.12em; }
@@ -443,10 +459,11 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
     .home-page h1 { max-width: 12ch; font-size: clamp(2.8rem, 13vw, 4.8rem); }
     .home-hero-note { grid-template-columns: repeat(3, 1fr); border-block: 0; }
     .home-hero-note span { padding: 0.75rem 0; border-block: 1px solid #bad3c8; text-align: center; font-size: 0.9rem; }
-    .service-choice-grid, .home-steps, .home-trust-inner { grid-template-columns: 1fr; }
+    .service-choice-grid, .home-steps { grid-template-columns: 1fr; }
     .service-choice { min-height: 12rem; }
     .home-contact-inner { align-items: flex-start; flex-direction: column; gap: 1.75rem; }
     .home-contact .button { width: 100%; }
+    .home-trust-box { padding: 1.1rem 1rem; }
 }
 
 /* Focus refinement for the stable homepage. */
@@ -593,6 +610,7 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
 .home-page .home-kfz-disclosure { max-width: 34rem; margin: 1rem 0 0; color: var(--color-muted); font-size: 0.78rem; line-height: 1.45; }
 .home-page .home-kfz-banner { width: 300px; max-width: 100%; margin: 0; justify-self: end; }
 .home-page .home-kfz-banner a, .home-page .home-kfz-banner img { display: block; width: 300px; max-width: 100%; }
+.home-page .home-trust { padding-block: 2rem; }
 .home-page .home-process { padding-block: 1.5rem 3.8rem; }
 .home-page .home-process .home-section-heading { margin-bottom: 1.7rem; }
 .home-page .home-process .home-section-heading h2 { font-size: clamp(2.2rem, 3.4vw, 3.15rem); }
@@ -651,10 +669,16 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
     .home-page .home-actions { flex-direction: column; }
     .home-page .home-actions .button { width: 100%; }
     .provider-program { grid-template-columns: 1fr; gap: 1rem; }
-    .provider-program-list { grid-template-columns: repeat(2, minmax(120px, 1fr)); justify-items: center; }
+    .provider-program-list { grid-template-columns: 1fr; justify-items: center; }
+    .provider-partner-tile, .plan-b-advertisement { justify-self: center; }
+    .strom-provider-program .provider-program-list { grid-template-columns: 1fr; justify-items: stretch; }
+    .home-provider-program .provider-program-list { grid-template-columns: 1fr; justify-items: stretch; }
     .internet-form .speed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .internet-form .speed-grid label:last-child { grid-column: 1 / -1; }
 .home-page .home-hero-mobile-image img { aspect-ratio: 1.65 / 1; }
+}
+@media (max-width: 48rem) {
+    .strom-provider-program .provider-program-list { grid-template-columns: 1fr; justify-items: stretch; }
 }
 /* End approved homepage reference styles. */
 

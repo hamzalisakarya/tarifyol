@@ -85,7 +85,7 @@ function addGasProviderProgram() {
     section.id = "gas-provider-program";
     section.className = "provider-program provider-program-journey";
     section.setAttribute("aria-labelledby", "gas-provider-heading");
-    section.innerHTML = '<div class="provider-program-copy"><p class="eyebrow">Anbieter &amp; Partnerprogramme</p><h2 id="gas-provider-heading">Anbieter &amp; Partnerprogramme</h2><p>TarifYol arbeitet mit ausgewählten Anbietern und Partnerprogrammen zusammen.</p></div><div class="provider-program-list"><a class="provider-creative" rel="sponsored" href="https://www.awin1.com/cread.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193"><img src="https://www.awin1.com/cshow.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193" border="0" alt="LichtBlick"></a></div>';
+    section.innerHTML = '<div class="provider-program-copy"><p class="eyebrow" id="gas-provider-heading" data-de="ANBIETER &amp; PARTNERPROGRAMME" data-tr="ANLAŞMALI SAĞLAYICILAR &amp; PARTNER PROGRAMLARI">ANBIETER &amp; PARTNERPROGRAMME</p><p data-de="TarifYol arbeitet mit ausgewählten Anbietern und Partnerprogrammen zusammen." data-tr="TarifYol, seçili sağlayıcılar ve partner programlarıyla iş birliği yapar.">TarifYol arbeitet mit ausgewählten Anbietern und Partnerprogrammen zusammen.</p></div><div class="provider-program-list"><div class="provider-partner-tile"><a class="provider-creative" target="_blank" rel="sponsored noopener noreferrer" href="https://www.awin1.com/cread.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193"><img src="https://www.awin1.com/cshow.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193" border="0" alt="LichtBlick"></a></div></div>';
     target.append(section);
 }
 
