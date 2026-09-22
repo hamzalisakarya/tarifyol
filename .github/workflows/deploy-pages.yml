@@ -27,10 +27,15 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare versioned frontend artifact
+        env:
+          ASSET_VERSION: ${{ github.sha }}
+        run: node scripts/version-static-assets.mjs frontend _site "$ASSET_VERSION"
+
       - name: Upload frontend artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
