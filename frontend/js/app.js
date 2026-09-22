@@ -97,7 +97,13 @@ const translations = {
         nextFourTitle: "Sie entscheiden, ob Sie weitermachen möchten", nextFourText: "Zusätzliche Vertragsdaten werden erst angefordert, wenn Sie fortfahren möchten und diese für den konkreten Vorgang erforderlich sind.",
         partnerProcess: "Je nach Anbieter und Partnerprozess können Sie den Abschluss selbst durchführen oder Unterstützung beim weiteren Ablauf erhalten.",
         privacyHeading: "Erst Tarif prüfen, dann erforderliche Angaben (IBAN, Geburtsdatum usw.)", privacyText: "Für die erste Prüfung reichen grundlegende Angaben aus. Weitere Angaben werden erst benötigt, wenn Sie mit einem Vertrag fortfahren möchten.",
-        privacyLink: "Zur Datenschutzerklärung"
+        privacyLink: "Zur Datenschutzerklärung",
+        analyticsConsentTitle: "Datenschutz und Analyse",
+        analyticsConsentText: "Wir verwenden Google Analytics, um die Nutzung unserer Website zu verstehen. Dies geschieht erst, wenn Sie zustimmen. Sie können Ihre Entscheidung jederzeit ändern.",
+        analyticsAccept: "Akzeptieren",
+        analyticsReject: "Ablehnen",
+        analyticsSettings: "Analyse-Einstellungen",
+        analyticsSettingsAria: "Analyse-Einstellungen öffnen"
     },
     tr: {
         pageTitle: "TarifYol – Elektrik, Doğal Gaz, İnternet ve Kfz",
@@ -197,12 +203,20 @@ const translations = {
         nextFourTitle: "Devam edip etmeyeceğinize siz karar verirsiniz", nextFourText: "Ek sözleşme bilgileri ancak devam etmek istediğinizde ve ilgili işlem için gerekli olduğunda istenir.",
         partnerProcess: "Sağlayıcı ve partner sürecine göre sözleşmeyi kendiniz tamamlayabilir veya sonraki adımlarda destek alabilirsiniz.",
         privacyHeading: "Önce tarife kontrolü, sonra gerekli bilgiler (IBAN, doğum tarihi vb.)", privacyText: "İlk kontrol için yalnızca temel bilgiler yeterlidir. Ek bilgiler ancak sözleşmeyle devam etmek istediğinizde istenir.",
-        privacyLink: "Gizlilik bildirimine git"
+        privacyLink: "Gizlilik bildirimine git",
+        analyticsConsentTitle: "Gizlilik ve analiz",
+        analyticsConsentText: "Web sitemizin kullanımını anlamak için Google Analytics kullanıyoruz. Bu, ancak onay verdiğinizde etkinleşir. Kararınızı istediğiniz zaman değiştirebilirsiniz.",
+        analyticsAccept: "Kabul et",
+        analyticsReject: "Reddet",
+        analyticsSettings: "Analiz ayarları",
+        analyticsSettingsAria: "Analiz ayarlarını aç"
     }
 };
 
 const storageKey = "tarifyol-language";
 const legacyStorageKey = "feelyng-language";
+const analyticsConsentKey = "tarifyol-analytics-consent";
+const googleAnalyticsId = "G-8CM0VCMD20";
 
 // Enter the official TarifYol WhatsApp number here in international format, without +, spaces or punctuation.
 const TARIFYOL_WHATSAPP_NUMBER = "491776942457";
@@ -328,6 +342,108 @@ function setLanguage(language) {
     updateContactMenuLinks();
     if (latestEstimate) renderConsumptionEstimate(latestEstimate);
     document.dispatchEvent(new CustomEvent("tarifyol:languagechange", { detail: { language: currentLanguage } }));
+}
+
+function getAnalyticsConsent() {
+    try {
+        return localStorage.getItem(analyticsConsentKey);
+    } catch {
+        return null;
+    }
+}
+
+function setAnalyticsConsent(value) {
+    try {
+        localStorage.setItem(analyticsConsentKey, value);
+    } catch {
+        // Analytics remains disabled when consent storage is unavailable.
+    }
+}
+
+function deleteGoogleAnalyticsCookies() {
+    document.cookie.split(";").forEach((cookie) => {
+        const name = cookie.split("=")[0].trim();
+        if (name.startsWith("_ga")) {
+            document.cookie = `${name}=; Max-Age=0; path=/`;
+        }
+    });
+}
+
+function loadGoogleAnalytics() {
+    if (window.__tarifyolGoogleAnalyticsLoaded) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag("consent", "default", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        wait_for_update: 500
+    });
+    window.gtag("consent", "update", { analytics_storage: "granted" });
+    window.gtag("js", new Date());
+    window.gtag("config", googleAnalyticsId);
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`;
+    document.head.appendChild(script);
+    window.__tarifyolGoogleAnalyticsLoaded = true;
+}
+
+function showAnalyticsConsent() {
+    const banner = document.querySelector("[data-analytics-consent]");
+    if (!banner) return;
+    banner.hidden = false;
+    document.querySelector("[data-analytics-settings]")?.setAttribute("hidden", "");
+}
+
+function applyAnalyticsConsent(value) {
+    setAnalyticsConsent(value);
+    const banner = document.querySelector("[data-analytics-consent]");
+    const settings = document.querySelector("[data-analytics-settings]");
+    if (banner) banner.hidden = true;
+    if (settings) settings.hidden = false;
+
+    if (value === "granted") {
+        loadGoogleAnalytics();
+    } else if (window.gtag) {
+        window.gtag("consent", "update", { analytics_storage: "denied" });
+        deleteGoogleAnalyticsCookies();
+    }
+}
+
+function setupAnalyticsConsent() {
+    const privacyPath = window.location.pathname.includes("/ratgeber/") ? "../datenschutz.html" : "datenschutz.html";
+    const shell = document.createElement("div");
+    shell.innerHTML = `<aside class="analytics-consent" data-analytics-consent role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-text" hidden>
+        <div class="analytics-consent-copy">
+            <h2 id="analytics-consent-title" data-i18n="analyticsConsentTitle">Datenschutz und Analyse</h2>
+            <p id="analytics-consent-text" data-i18n="analyticsConsentText">Wir verwenden Google Analytics, um die Nutzung unserer Website zu verstehen. Dies geschieht erst, wenn Sie zustimmen. Sie können Ihre Entscheidung jederzeit ändern.</p>
+            <a class="analytics-consent-link" href="${privacyPath}" data-i18n="privacyLink">Zur Datenschutzerklärung</a>
+        </div>
+        <div class="analytics-consent-actions">
+            <button class="button button-light" type="button" data-analytics-reject data-i18n="analyticsReject">Ablehnen</button>
+            <button class="button button-primary" type="button" data-analytics-accept data-i18n="analyticsAccept">Akzeptieren</button>
+        </div>
+    </aside>
+    <button class="analytics-settings" type="button" data-analytics-settings data-i18n="analyticsSettings" data-i18n-aria-label="analyticsSettingsAria" hidden>Analyse-Einstellungen</button>`;
+    document.body.appendChild(shell);
+
+    shell.querySelector("[data-analytics-accept]").addEventListener("click", () => applyAnalyticsConsent("granted"));
+    shell.querySelector("[data-analytics-reject]").addEventListener("click", () => applyAnalyticsConsent("denied"));
+    shell.querySelector("[data-analytics-settings]").addEventListener("click", showAnalyticsConsent);
+
+    const savedConsent = getAnalyticsConsent();
+    if (savedConsent === "granted") {
+        loadGoogleAnalytics();
+        shell.querySelector("[data-analytics-settings]").hidden = false;
+    } else if (savedConsent === "denied") {
+        shell.querySelector("[data-analytics-settings]").hidden = false;
+    } else {
+        showAnalyticsConsent();
+    }
 }
 
 menuToggle?.addEventListener("click", () => {
@@ -494,6 +610,7 @@ tariffForm?.addEventListener("submit", (event) => {
 });
 
 setupContactMenus();
+setupAnalyticsConsent();
 
 let savedLanguage = "de";
 try {
