@@ -161,6 +161,15 @@ h1 { max-width: 49rem; margin: 0; font-size: clamp(3rem, 6.5vw, 5.65rem); line-h
 .todo { display: inline; padding: 0.08rem 0.38rem; color: #74560d; background: #fff1bd; border-radius: 0.3rem; font-weight: 700; }
 .back-link { display: inline-block; margin-top: 2.5rem; color: var(--color-primary-dark); font-weight: 750; text-underline-offset: 0.3em; }
 
+.analytics-consent { position: fixed; z-index: 40; right: 1.25rem; bottom: 1.25rem; left: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; max-width: 72rem; margin-inline: auto; padding: 1.1rem 1.25rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-medium); box-shadow: var(--shadow-large); }
+.analytics-consent-copy { max-width: 48rem; }
+.analytics-consent h2 { margin: 0 0 0.25rem; font-size: 1rem; }
+.analytics-consent p { margin: 0; color: var(--color-muted); font-size: 0.88rem; line-height: 1.45; }
+.analytics-consent-link { display: inline-block; margin-top: 0.35rem; color: var(--color-primary-dark); font-size: 0.82rem; font-weight: 700; text-underline-offset: 0.2em; }
+.analytics-consent-actions { display: flex; flex: none; gap: 0.65rem; }
+.analytics-consent-actions .button { min-height: 2.7rem; padding: 0.6rem 1rem; font-size: 0.88rem; }
+.analytics-settings { position: fixed; z-index: 39; right: 1rem; bottom: 1rem; padding: 0.55rem 0.8rem; color: var(--color-primary-dark); background: white; border: 1px solid var(--color-border); border-radius: 999px; box-shadow: var(--shadow-small); font-size: 0.78rem; font-weight: 750; cursor: pointer; }
+
 /* Strom tariff journey */
 .strom-hero { padding: clamp(4rem, 8vw, 7rem) 0; background: radial-gradient(circle at 90% 15%, rgba(223, 243, 166, 0.55), transparent 25rem), var(--color-soft); }
 .strom-hero-grid, .tariff-layout { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.7fr); align-items: start; gap: clamp(3rem, 8vw, 7rem); }
@@ -303,6 +312,10 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
 }
 
 @media (max-width: 48rem) {
+    .analytics-consent { right: 0.75rem; bottom: 0.75rem; left: 0.75rem; align-items: stretch; flex-direction: column; gap: 0.9rem; padding: 1rem; }
+    .analytics-consent-actions { width: 100%; }
+    .analytics-consent-actions .button { flex: 1; }
+
     .hero-grid, .split-layout { grid-template-columns: 1fr; }
     .hero-card { justify-self: start; }
     .steps { grid-template-columns: repeat(2, 1fr); gap: 2rem 0; }
