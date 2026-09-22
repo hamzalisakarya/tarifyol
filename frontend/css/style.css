@@ -294,6 +294,11 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
     .header-panel .button { align-self: flex-start; }
     .card-grid { grid-template-columns: repeat(2, 1fr); }
     .strom-hero-grid { grid-template-columns: 1fr; }
+    .strom-hero-grid > .tariff-left { display: contents; }
+    .strom-hero-grid > .tariff-left > h1 { order: 1; }
+    .strom-hero-grid > .tariff-left > .inline-trust { order: 2; }
+    .strom-hero-grid > .tariff-right { order: 3; }
+    .strom-hero-grid > .tariff-left > .strom-provider-program { order: 4; }
     body:not(.kfz-page) .strom-hero-grid { gap: 2.5rem; }
 }
 
