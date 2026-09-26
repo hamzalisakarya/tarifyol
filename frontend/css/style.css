@@ -261,14 +261,19 @@ body:not(.kfz-page) .strom-hero ~ .section#learn-more .section-heading { margin-
 .plan-b-advertisement { width: 300px; max-width: 100%; }
 .plan-b-advertisement a { display: block; width: 300px; max-width: 100%; line-height: 0; }
 .plan-b-advertisement img { display: block; width: 300px; max-width: 100%; height: auto; }
-.strom-provider-program .provider-program-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 0; background: transparent; border: 0; border-radius: 0; }
+.strom-provider-program .provider-program-list { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: 1rem; padding: 0; background: transparent; border: 0; border-radius: 0; align-items: stretch; }
+.strom-provider-stack { display: grid; min-width: 0; gap: 1rem; }
 .strom-provider-program .provider-partner-tile { width: auto; min-height: 120px; align-items: start; padding: 1rem; background: white; }
+.strom-provider-program .provider-partner-tile--descriptive { align-content: start; gap: 0.75rem; }
+.strom-provider-program .provider-partner-tile--descriptive p { display: grid; gap: 0.25rem; margin: 0; color: var(--color-muted); font-size: 0.78rem; line-height: 1.35; }
+.strom-provider-program .provider-partner-tile--descriptive strong { color: var(--color-primary-dark); font-size: 0.88rem; }
 .strom-provider-program .plan-b-advertisement { display: flex; width: auto; max-width: none; justify-content: center; padding: 1rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); }
 .strom-provider-program .plan-b-advertisement a { width: 100%; max-width: 300px; }
 .strom-provider-program .plan-b-advertisement img { width: 100%; max-width: 300px; height: auto; }
 .home-provider-program .provider-program-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding: 0; background: transparent; border: 0; border-radius: 0; }
 .home-provider-card { display: flex; min-width: 0; min-height: 7.5rem; align-items: center; justify-content: center; padding: 1rem; background: white; border: 1px solid var(--color-border); border-radius: var(--radius-small); }
 .home-provider-card .provider-creative { width: 120px; max-width: 100%; }
+.internet-provider-program .provider-program-list { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; background: transparent; border: 0; border-radius: 0; }
 .plan-b-partner { grid-column: 1 / -1; display: flex; justify-content: center; min-height: 0; }
 .plan-b-partner a { display: block; width: min(100%, 970px); line-height: 0; }
 .plan-b-partner img { display: block; width: 100%; max-width: 970px; height: auto; }
