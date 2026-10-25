@@ -78,19 +78,6 @@ document.querySelector("[data-whatsapp-contact]")?.addEventListener("click", () 
     window.openTarifYolWhatsAppMessage?.(message);
 });
 
-function addGasProviderProgram() {
-    const target = document.querySelector(".tariff-layout > .tariff-left");
-    if (!document.querySelector("#gas-form") || !target || document.querySelector("#gas-provider-program")) return;
-    const section = document.createElement("section");
-    section.id = "gas-provider-program";
-    section.className = "provider-program provider-program-journey";
-    section.setAttribute("aria-labelledby", "gas-provider-heading");
-    section.innerHTML = '<div class="provider-program-copy"><p class="eyebrow" id="gas-provider-heading" data-de="ANBIETER &amp; PARTNERPROGRAMME" data-tr="ANLAŞMALI SAĞLAYICILAR &amp; PARTNER PROGRAMLARI">ANBIETER &amp; PARTNERPROGRAMME</p><p data-de="TarifYol arbeitet mit ausgewählten Anbietern und Partnerprogrammen zusammen." data-tr="TarifYol, seçili sağlayıcılar ve partner programlarıyla iş birliği yapar.">TarifYol arbeitet mit ausgewählten Anbietern und Partnerprogrammen zusammen.</p></div><div class="provider-program-list"><div class="provider-partner-tile"><a class="provider-creative" target="_blank" rel="sponsored noopener noreferrer" href="https://www.awin1.com/cread.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193"><img src="https://www.awin1.com/cshow.php?s=2608676&amp;v=19047&amp;q=385861&amp;r=2991193" border="0" alt="LichtBlick"></a></div></div>';
-    target.append(section);
-}
-
-addGasProviderProgram();
-
 const gasForm = document.querySelector("#gas-form");
 const gasEstimator = document.querySelector("#gas-estimator");
 const gasEstimatorForm = document.querySelector("#gas-estimator-form");
