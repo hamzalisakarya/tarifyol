@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: tarifyol-backend
+  datasource:
+    url: ${TARIFYOL_DB_URL:jdbc:postgresql://localhost:5433/tarifyol}
+    username: ${TARIFYOL_DB_USERNAME:tarifyol}
+    password: ${TARIFYOL_DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+tarifyol:
+  cors:
+    allowed-origins: ${TARIFYOL_CORS_ALLOWED_ORIGINS:https://tarifyol.de}
+  admin:
+    username: ${TARIFYOL_ADMIN_USERNAME:admin}
+    password: ${TARIFYOL_ADMIN_PASSWORD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
